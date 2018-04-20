@@ -1,0 +1,11 @@
+{
+  "name": "Optikky",
+  "displayName": "Optikky",
+  "description": "Optical Shop",
+  "type": "WebApp",
+  "version": "1.0.0",
+  "defaultPage": "index.html",
+  "defaultPlatform": "NodeJS",
+  "appId": "689aecb1ce4c4abeb8604ee24b1b69a63ce4d147",
+  "env": "dev"
+}
