@@ -10,7 +10,7 @@ class ProductService {
 
     constructor() {
         this.http = new ServiceHandler(appJson.appId);
-        this.baseEndpoint = 'http://localhost:5000/api';
+        this.baseEndpoint = 'http://localhost:8080';
     }
 
     getListOfProductOverview = (req: any, res: any) => {
@@ -31,7 +31,7 @@ class ProductService {
     }
 
     getValues =  (req: any, res: any) => {
-        const uri = this.baseEndpoint + '/values';
+        const uri = this.baseEndpoint + '/greeting';
         const body = { };
         const requestOpt = this.http.createOption(uri, body);
         console.log("get values!!");
@@ -39,7 +39,7 @@ class ProductService {
             res.send(200, data);
         };
 
-        this.http.postAsync(requestOpt)
+        this.http.getAsync(requestOpt)
             .then(getvalueSuccess)
             .catch((error) => {
                 this.errorHandler(error);

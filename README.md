@@ -22,8 +22,8 @@ This project is the front-end of optical shop e-commerce website which is develo
 
 1. Open cmd/terminal cd to your file location
 2. run `gulp tsc` command : to generate the javascript files for services folder(it will call back-end via REST API)
-3. run `npm start` : to build the front-end project and running via port 8080 (this command already do proxy to connect with node server)
+3. run `npm start` : to build the front-end project and running via port 5000 (this command already do proxy to connect with node server)
 4. Open another teminal to run node server
 5. cd to your file location
 6. run `node app.js` : to run node server port 3000
-7. open chrome with url: http://localhost:8080/
+7. open chrome with url: http://localhost:5000/
