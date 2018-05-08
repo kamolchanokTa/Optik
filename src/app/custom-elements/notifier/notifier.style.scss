@@ -1,0 +1,55 @@
+@keyframes slide-in {
+    from {margin-top: -30px;}
+    to {margin-top: 0;}
+}
+
+@keyframes slide-out {
+    from {height: 30px;}
+    to {height: 0;}
+}
+.notify-container {
+    position: relative;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    line-height: 30px;
+    font-weight: bold;
+
+    .info {
+        background: #295e8c;
+    }
+
+    .error {
+        background: #a8313f;
+
+    }
+
+    .warn {
+        background: #cc7f33;
+    }
+
+    .confirm {
+        background: #237843;
+    }
+    .alertBlock {
+        position: relative; 
+        display: block;
+        margin-bottom: 2px;
+        animation-duration: .5s;
+        animation-name: slide-in;
+    }
+    .notificationItemRemoved {
+      animation-duration: .25s;
+      animation-name: slide-out;
+    }
+}
+
+
+.cross-close{
+	position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -11.5px;
+    cursor: pointer;
+}

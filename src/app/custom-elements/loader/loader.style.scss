@@ -1,0 +1,91 @@
+.loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+$duration: 2000ms;
+
+@mixin animator($delay) {
+    animation: fx $duration ease infinite $delay;
+}
+
+.loader-element {
+    $dot-size: 20px;
+    width: $dot-size;
+    height: $dot-size;
+    border: 1px solid #c2c2c2;
+    border-radius: 50%;
+    float: left;
+    margin: 0 5px;
+    @include animator(0ms);
+
+    &:nth-child(2) {
+        @include animator(400ms)
+    }
+
+    &:nth-child(3) {
+        @include animator(800ms)
+    }
+
+    &.medium {
+        width: $dot-size / 2;
+        height: $dot-size / 2;
+        margin: 0 3px;
+    }
+
+    &.small {
+        width: $dot-size / 4;
+        height: $dot-size / 4;
+        margin: 0 1px;
+    }
+}
+
+@keyframes fx {
+    0%,100% {
+        background-color: rgba(255, 255, 255,1);
+    }
+
+    5%,95% {
+        background-color: rgba(255, 255, 255,0.9);
+    }
+
+    10%,90% {
+        background-color: rgba(255, 255, 255,0.8);
+    }
+
+    15%,85% {
+        background-color: rgba(255, 255, 255,0.7);
+    }
+
+    20%,80% {
+        background-color: rgba(255, 255, 255,0.6);
+    }
+
+    25%,75% {
+        background-color: rgba(255, 255, 255,0.5);
+    }
+
+    30%,70% {
+        background-color: rgba(255, 255, 255,0.4);
+    }
+
+    35%,65% {
+        background-color: rgba(255, 255, 255,0.3);
+    }
+
+    40%,60% {
+        background-color: rgba(255, 255, 255,0.2);
+    }
+
+    45%,55% {
+        background-color: rgba(255, 255, 255,0.1);
+    }
+
+    50% {
+        background-color: rgba(255, 255, 255,0);
+    }
+
+}

@@ -1,0 +1,6 @@
+<div class="notify-container">
+    <div *ngFor="let msg of messages.slice().reverse()" class="{{msg.type}} alertBlock" #notifyBlock (animationend)="animationDone(msg)">
+        <span>{{msg.message}}</span>
+        <div class ="cross-close"><span class="icon-cross-mini-2 coral-icon" (click)="closeManually(msg)"></span></div>
+    </div>
+</div>

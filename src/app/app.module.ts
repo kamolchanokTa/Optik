@@ -6,6 +6,7 @@ import { RouteModule } from './app.router';
 
 import { AppComponent } from './app.component';
 import { componentList, serviceList, bootstrap } from './components.register';
+import { CustomElementModule } from './custom-elements/custom.element.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { componentList, serviceList, bootstrap } from './components.register';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouteModule
+    RouteModule,
+    CustomElementModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [serviceList],
