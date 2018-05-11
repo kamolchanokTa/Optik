@@ -44,6 +44,26 @@ class UserService {
     private errorHandler(error: any) {
         console.log(error);
     }
+
+    login = (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/user/login';
+        const body = {
+            "email": req.body.email,
+            "password": req.body.password,
+        };
+        const requestOpt = this.http.createOption(uri, body);
+
+        const loginUserSuccess = (data: any) => {
+            res.send(200, data);
+        };
+
+        this.http.postAsync(requestOpt)
+            .then(loginUserSuccess)
+            .catch((error) => {
+                this.errorHandler(error);
+                res.send(error.code || 500, error.message || "Internal server error");
+            });
+    }
 }
 
 export default new UserService();
