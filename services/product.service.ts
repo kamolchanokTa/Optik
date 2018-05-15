@@ -30,11 +30,10 @@ class ProductService {
             });
     }
 
-    getValues =  (req: any, res: any) => {
-        const uri = this.baseEndpoint + '/greeting';
+    getProducts =  (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/products';
         const body = { };
         const requestOpt = this.http.createOption(uri, body);
-        console.log("get values!!");
         const getvalueSuccess = (data: any) => {
             res.send(200, data);
         };
@@ -45,9 +44,29 @@ class ProductService {
                 this.errorHandler(error);
                 res.send(error.code || 500, error.message || "Internal server error");
             });
-        // console.log("sd");
-        // var data = ['vales1','values2'];
-        // res.send(200, data);
+    }
+
+    saveProduct = (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/product/create';
+        const body = {
+            "name": req.body.name,
+            "productType": req.body.productType,
+            "image": req.body.image,
+            "price":req.body.price,
+            "description": req.body.description
+        };
+        const requestOpt = this.http.createOption(uri, body);
+
+        const saveProductSuccess = (data: any) => {
+            res.send(200, data);
+        };
+
+        this.http.postAsync(requestOpt)
+            .then(saveProductSuccess)
+            .catch((error) => {
+                this.errorHandler(error);
+                res.send(error.code || 500, error.message || "Internal server error");
+            });
     }
 
     private errorHandler(error: any) {

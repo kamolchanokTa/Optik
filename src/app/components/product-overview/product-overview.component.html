@@ -3,7 +3,7 @@
     <table>
         <tbody>
             <tr *ngFor="let v of valueList">
-                <td>{{v.value}}</td>
+                <td><img [attr.src]="b64toBlob(v.image,'image/jpeg',512)"></td>
             </tr>
         </tbody>
     </table>
