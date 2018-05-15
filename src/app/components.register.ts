@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateAddressComponent } from './components/update-address/update-address.component';
 import { UpdateCreditComponent } from './components/update-credit/update-credit.component';
+import { ProductCreationComponent } from './components/product-creation/product-creation.component';
 
 //import services
 import { ProductService } from './services/product.service';

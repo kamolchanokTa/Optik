@@ -37,8 +37,12 @@ app.post('/api/user/update-credit', function (req, res) {
     userServ.default.updateCredit(req, res);
 });
 // the GET "movies" API endpoint
-app.get('/api/values',function(req, res){
-    productServ.default.getValues(req, res);
+app.get('/api/product-overview',function(req, res){
+    productServ.default.getProducts(req, res);
+});
+
+app.post('/api/product/save',function(req, res){
+    productServ.default.saveProduct(req, res);
 });
 module.exports = app;
 

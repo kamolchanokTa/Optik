@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UpdateAddressComponent } from './components/update-address/update-address.component';
 import { UpdateCreditComponent } from './components/update-credit/update-credit.component';
 
+import { ProductCreationComponent } from './components/product-creation/product-creation.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/product-overview', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'update-address', component: UpdateAddressComponent },
     { path: 'update-credit', component: UpdateCreditComponent },
+    { path: 'product-create', component: ProductCreationComponent },
 ]
 
 @NgModule({
