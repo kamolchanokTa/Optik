@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { NgModel } from "@angular/forms";
 
 import { ProductService, ProductObject} from "../../services/product.service";
@@ -15,6 +15,7 @@ export class ProductCreationComponent implements OnInit {
     // private fields
     loading: boolean;
     notifyMessages: INotifyMessage[];
+    productId: string = this.route.snapshot.params['id'];
 
     //product parameters 
     name: string;
@@ -26,10 +27,14 @@ export class ProductCreationComponent implements OnInit {
     ngOnInit() {
         this.loading = true;
         this.notifyMessages = [];
+        debugger;
+        this.route.snapshot.params['id'];
+        console.log("id: " + this.productId);
     }
 
     constructor(private router: Router,
-        private productSvc: ProductService
+        private productSvc: ProductService,
+        private route: ActivatedRoute
         ){
     }
 
