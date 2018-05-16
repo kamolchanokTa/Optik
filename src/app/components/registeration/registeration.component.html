@@ -3,77 +3,69 @@
         <loader medium=true></loader>
     </div>
     <notifier [messages]="notifyMessages"></notifier>
-    <div>
-        <div>
+    <div class='container col-6 mx-auto bg-light'>
+        <div class='my-2'>
+            <h3 class='text-center'>Register your account!</h3>
+            <hr/>
             <div>
-                <div class="block-left">First Name:</div>
-                <div class="block-right">
-                    <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="firstname" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5 ">First Name:</label>
+                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="firstname" maxlength="50" />
             </div>
             <div>
-                <div class="block-left">Last Name:</div>
-                <div class="block-right">
-                    <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="lastname" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">Last Name:</label>
+                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="lastname" maxlength="50" />
             </div>
             <div>
-                <div class="block-left">email:</div>
-                <div class="block-right">
-                    <input type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="email" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">email:</label>
+                    <input class="block-right col-6" type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="email" maxlength="50" />
             </div>
             <div>
-                <div class="block-left">password:</div>
-                <div class="block-right">
-                    <input type="password" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="password" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">password:</label>
+                    <input class="block-right col-6" type="password" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="password" maxlength="50" />
             </div>
             <div>
-                <div class="block-left">Confirm password:</div>
-                <div class="block-right">
-                    <input type="password" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="confirmedpassword" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">Confirm password:</label>
+                    <input class="block-right col-6" type="password" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="confirmedpassword" maxlength="50" />
             </div>
             <div>
-                <div class="block-left">Date of birth:</div>
-                <div class="block-right">
-                    <input type="date" [(ngModel)]="dob" />
-                </div>
+                <label class="block-left col-3 col-sm-5">Date of birth:</label>
+                
+                    <input class="block-right col-6" type="date" [(ngModel)]="dob" />
+                
             </div>
             <div>
-                <div class="block-left">Address:</div>
-                <div class="block-right">
-                    <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="address" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">Address:</label>
+                
+                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="address" maxlength="50" />
+                
             </div>
             <div>
-                <div class="block-left">City:</div>
-                <div class="block-right">
-                    <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="city" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">City:</label>
+                
+                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="city" maxlength="50" />
+                
             </div>
             <div>
-                <div class="block-left">Zip Code:</div>
-                <div class="block-right">
-                    <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="zipcode" maxlength="50" />
-                </div>
+                <label class="block-left col-3 col-sm-5">Zip Code</label>
+                
+                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="zipcode" maxlength="50" />
+                
             </div>
             <div>
-                <div class="block-left">Country:</div>
-                <div class="block-right">
-                    <select [(ngModel)] = "countrySelected"> 
+                <label class="block-left col-3 col-sm-5">Country:</label>
+                
+                    <select class="col-6" [(ngModel)] = "countrySelected"> 
                         <option disabled selected value> -- select country -- </option>
                         <option *ngFor="let country of countryList" [value]="country.name">
                             {{country.name}}
                         </option>
                     </select>
                     {{countrySelected}}
-                </div>
             </div>
-            <div class="align-right">
-            <button class="cta" (click)="registerObject()">Sign UP</button>
-            <button routerLink="/registeration">Cancel</button>
-        </div>
+            </div>
+            <div class="float-right mr-4">
+                <button class="cta btn btn-secondary" (click)="registerObject()">Sign UP</button>
+                <button class='btn btn-secondary' routerLink="/registeration">Cancel</button>
+            </div>
     </div>
 </div>

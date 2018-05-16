@@ -1,0 +1,28 @@
+<div id="register" >
+    <div [hidden]="!loading">
+        <loader medium=true></loader>
+    </div>
+    <notifier [messages]="notifyMessages"></notifier>
+   <div class='container col-6 mx-auto bg-light'>
+        <div class='my-2'>
+            <h3 class='text-center'>Register your account!</h3>
+            <hr/>
+            <div>
+                <label class="block-left col-3 col-sm-5 ">First Name:</label>
+                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.firstname" maxlength="50" />
+            </div>
+            <div>
+                <label class="block-left col-3 col-sm-5">Last Name:</label>
+                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.lastname" maxlength="50" />
+            </div>
+            <div>
+                <label class="block-left col-3 col-sm-5">email:</label>
+                    <input class="block-right col-6" type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.email" maxlength="50" />
+            </div>
+            </div>
+            <div class="float-right mr-4">
+                <button class="cta btn btn-secondary" (click)="registerObject()">Register</button>
+                <button class='btn btn-secondary' routerLink="/registeration">Cancel</button>
+            </div>
+    </div>
+</div>
