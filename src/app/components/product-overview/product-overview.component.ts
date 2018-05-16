@@ -17,6 +17,7 @@ export class ProductOverviewComponent implements OnInit {
     // private fields
     valueList: any[];
     loading: boolean;
+
     ngOnInit() {
         this.loading = true;
         this.valueList = [];
@@ -58,29 +59,12 @@ export class ProductOverviewComponent implements OnInit {
     }
 
     b64toBlob(b64Data, contentType, sliceSize) {
-        // contentType = contentType || '';
-        // sliceSize = sliceSize || 512;
-
-        // var byteCharacters = atob(b64Data);
-        // var byteArrays = [];
-
-        // for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-        //     var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-        //     var byteNumbers = new Array(slice.length);
-        //     for (var i = 0; i < slice.length; i++) {
-        //         byteNumbers[i] = slice.charCodeAt(i);
-        //     }
-
-        //     var byteArray = new Uint8Array(byteNumbers);
-
-        //     byteArrays.push(byteArray);
-        // }
-        // var blob = new Blob(byteArrays, {type: contentType});
-        // let urlCreator = window.URL;
-        // let imageData = this.sanitizer.bypassSecurityTrustUrl(
-        //     urlCreator.createObjectURL(blob));
       
-      return "data:image/jpeg;base64,"+b64Data;
+      return "data:"+contentType+ ";base64,"+b64Data;
+    }
+
+    routeCreateProduct(){
+        debugger;
+        this.router.navigate(["/product-create", this.valueList[0]]);
     }
 }
