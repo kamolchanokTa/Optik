@@ -1,0 +1,47 @@
+
+<div id="login" >
+    <div [hidden]="!loading">
+        <loader medium=true></loader>
+    </div>
+    <notifier [messages]="notifyMessages"></notifier>
+	<div class = "container col-6 mx-auto bg-light">
+		<div class="wrapper">
+            <h3 class='text-center'>Update your address!</h3>
+            <hr/>
+			<div>
+                <label class="block-left col-6 col-md-5">Address:</label>
+                
+                    <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.address" maxlength="50" />
+                
+            </div>
+            <div>
+                <label class="block-left col-6 col-md-5">City:</label>
+                
+                    <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.city" maxlength="50" />
+                
+            </div>
+            <div>
+                <label class="block-left col-6 col-md-5">Zip Code</label>
+                
+                    <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters"  [(ngModel)]="model.zipcode" maxlength="50" />
+                
+            </div>
+            <div>
+                <label class="block-left col-6 col-md-5">Country:</label>
+                
+                    <select class="col-6 col-md-5" [(ngModel)] = "countrySelected"> 
+                        <option disabled selected value> -- select country -- </option>
+                        <option *ngFor="let country of countryList" [value]="country.name">
+                            {{country.name}}
+                        </option>
+                    </select>
+                    {{countrySelected}}
+            </div>
+            <div>
+                <button class="cta btn btn-secondary col-3 col-md-2" (click)="updateAddressObject()">Next</button>
+                <button class='btn btn-secondary col-3 col-md-2' routerLink="/registeration">Cancel</button>
+            </div>	
+				
+		</div>
+	</div>
+</div>
