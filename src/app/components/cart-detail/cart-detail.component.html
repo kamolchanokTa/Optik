@@ -1,0 +1,69 @@
+<div id="cart-detail">
+        <table class="table tab-shop">
+
+            <!-- header -->
+            <tr class="well">
+                <td><b>Item</b></td>
+                <td class="tdCenter collapsible"><b>Quantity</b></td>
+                <td class="tdRight collapsible"><b>Price</b></td>
+
+                <!-- empty cart message -->
+            <tr [hidden]="cartService.getTotalCount(null) > 0">    
+                <td class="tdCenter collapsible" colspan="3">
+                    Your cart is empty.
+                </td>
+            </tr>
+
+            <!-- cart items -->
+            <!-- <tr *ngFor="let item of (cartService.items)"> -->
+            <tr [hidden]="cartService.getTotalCount(item.productid) < 1" *ngFor="let item of (cartService.items)">
+                <td [innerHTML] = "item.productid"></td>
+                <td class="tdCenter">
+                    <div class="input-append">
+                        <!-- use type=tel instead of to prevent spinners -->
+                        <input class="col-md-3 text-center quantity-prod" type="tel" readonly="readonly" style="text-align: right !important;border:none !important;border-width: 0 !important;"
+                                [(ngModel)]="item.quantity"
+                                (ngModelChange)="cartService.saveItems()" />
+                        <button class="btn btn-x-success" type="button" 
+                                style="text-align: left !important;"  
+                                (click)="cartService.addItem(item.productid, item.unitprice, +1)">+</button>
+                        <button class="btn btn-x-default" type="button" style="text-align: left !important;"
+                                [disabled]="item.quantity < 1"
+                                (click)="cartService.addItem(item.productid, item.unitprice, -1)">-</button>
+                    </div>
+                </td>
+                <td class="tdRight">{{item.unitprice * item.quantity | currency:'EURO':true:'1.2-2'}}</td>
+            </tr>
+
+            <!-- footer -->
+            <tr class="well">
+                <td colspan="3"><hr /></td>
+            </tr>
+            <tr class="well">
+                <td><b>Shipping / Handling</b></td>
+                <td class="tdCenter"><b>{{cartService.getTotalCount(null)}}</b></td>
+                <td class="tdRight"><b>{{cartService.getTotalShipping(null) | currency:'EURO':true:'1.2-2'}}</b></td>
+            </tr>
+        </table>
+
+        <div class="col-md-4">
+            <p class="text-info">
+                <button class="btn btn-block btn-default" (click)="callRoute('/store')">
+                    <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;back to store</button>
+                <button class="btn btn-block btn-x-danger"
+                    (click)="cartService.clearItems()"
+                    [disabled]="cartService.getTotalCount(null) < 1">
+                    <span class="glyphicon glyphicon-trash white"></span>&nbsp;&nbsp;clear cart</button>
+            </p>
+
+            <br />
+            <p class="text-info">
+                <button id="orderNowButton" class="btn btn-block btn-link" 
+                        (click)="checkout()"
+                        [disabled]="cartService.getTotalCount(null) < 1">
+                    Order Now
+                </button>
+            </p>
+        </div>
+</div>
+            

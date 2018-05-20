@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 var router = express.Router();
 var productServ = require("./services/product.service");
+var cartServ = require("./services/cart.service");
 var userServ = require("./services/user.service");
 const app = express();
 app.listen(3000, function () {
@@ -41,8 +42,16 @@ app.get('/api/product-overview',function(req, res){
     productServ.default.getProducts(req, res);
 });
 
+app.post('/api/product/get',function(req, res){
+    productServ.default.getProduct(req, res);
+});
+
 app.post('/api/product/save',function(req, res){
     productServ.default.saveProduct(req, res);
+});
+
+app.post('/api/cart/save',function(req, res){
+    cartServ.default.saveCart(req, res);
 });
 module.exports = app;
 
