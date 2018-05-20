@@ -6,13 +6,30 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateAddressComponent } from './components/update-address/update-address.component';
 import { UpdateCreditComponent } from './components/update-credit/update-credit.component';
+import { ProductCreationComponent } from './components/product-creation/product-creation.component';
+import { ProductDetailComponent} from './components/product-detail/product-detail.component';
+import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
 
 //import services
 import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
+import { LocalStorageService} from './services/local-storage.service';
+import { CartService} from './services/cart-service';
 
 export const bootstrap = [AppComponent];
 
-export const componentList = [AppComponent, ProductOverviewComponent, RegisterationComponent, LoginComponent, RegisterComponent, UpdateAddressComponent, UpdateCreditComponent];
 
-export const serviceList = [ProductService, UserService];
+export const componentList = [
+    AppComponent, 
+    ProductOverviewComponent, 
+    RegisterationComponent, 
+    ProductCreationComponent,
+    ProductDetailComponent,
+    CartDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    UpdateAddressComponent, 
+    UpdateCreditComponent
+];
+
+export const serviceList = [ProductService, UserService, LocalStorageService, CartService];

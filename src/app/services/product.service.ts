@@ -4,10 +4,32 @@ import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
+import { } from 'base64-img';
+
 
 export class ProductObject {
-    id: number;
     name: string;
+    productType: string;
+    image: string;
+    price: number;
+    description: string;
+}
+
+export class ProductCartObject {
+    id: string
+    name: string;
+    productType: string;
+    image: string;
+    price: number;
+    description: string;
+    availableproduct: number;
+    quantity: number;
+}
+
+export class ResponseObject {
+    status: string;
+    message: string;
+    data: any;
 }
 
 export class valueObject{
@@ -21,9 +43,9 @@ export class ProductService {
 
     constructor(private $http: HttpClient) { }
 
-    getProductObject = () => {
-        const getPackageSuccess = (response: any): Promise<ProductObject[]> => {            
-            return response.json() || {};
+    getProducts = () => {
+        const getPackageSuccess = (response: any): Promise<ResponseObject> => {            
+            return response || {};
         }
 
         return this.$http.get(this.baseUri + `/product-overview`)
@@ -32,12 +54,24 @@ export class ProductService {
             .catch(this.errorHandler);
     }
 
-    getValueObjects = () => {
-        const getPackageSuccess = (response: any): Promise<valueObject[]> => {            
+    saveProductObject = (product: ProductObject) => {
+        const saveProductSuccess = (response: any): Promise<any> => {            
             return response || {};
         }
 
-        return this.$http.get(this.baseUri + `/values`)
+        return this.$http.post(this.baseUri + `/product/save`, product)
+            .toPromise()
+            .then(saveProductSuccess)
+            .catch(this.errorHandler);
+    }
+
+    getProduct = (productId: any) => {
+        const getPackageSuccess = (response: any): Promise<any> => {            
+            return response || {};
+        }
+        console.log("product Id: "+ productId);
+        debugger;
+        return this.$http.post(this.baseUri + `/product/get`,productId)
             .toPromise()
             .then(getPackageSuccess)
             .catch(this.errorHandler);

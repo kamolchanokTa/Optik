@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgModel } from "@angular/forms";
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';  
 
 import { ProductService, valueObject} from "../../services/product.service";
 
@@ -14,29 +15,43 @@ import * as _ from "lodash";
 
 export class ProductOverviewComponent implements OnInit {
     // private fields
-    valueList: any;
+    productList: any[];
     loading: boolean;
+
     ngOnInit() {
         this.loading = true;
-        this.getValueObjects();
+        this.productList = [];
+        this.getProducts();
     }
 
     constructor(private router: Router,
-        private productSvc: ProductService){
+        private productSvc: ProductService,
+        private sanitizer: DomSanitizer){
     }
 
-    getValueObjects() {
+    getProducts() {
         const failToGetValueObjects = (error: any) => {
             this.loading = false;
         };
         debugger;
-        this.productSvc.getValueObjects()
+        this.productSvc.getProducts()
             .then((result) => {
                 this.loading = false;
-                this.valueList = result;
+                this.productList = result.data;
                 console.log(result);
             }, failToGetValueObjects);
                 // the first argument is a function which runs on success
                 
+    }
+
+    b64toBlob(b64Data, contentType, sliceSize) {
+      return "data:"+contentType+ ";base64,"+b64Data;
+    }
+
+    moreDetail(id: String){
+        let product = {
+            id: id
+        };
+        this.router.navigate(["/product-detail", product]);
     }
 }
