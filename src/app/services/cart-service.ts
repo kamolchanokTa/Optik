@@ -17,7 +17,7 @@ export class CartService {
 
     public config: any;
     private cartItemsObserver: any;
-    public cartName = 'AffiliateMarketingCart';
+    public cartName = 'CartDetail';
     public clearCart = false;
     public items = [];
 

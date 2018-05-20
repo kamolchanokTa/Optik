@@ -26,28 +26,59 @@ export class responseObject{
 export class UserService {
 
     private baseUri: string = `api`;
+    public userName = 'UserName';
+    public user = {
+        userid: '',
+    }
 
-    constructor(private $http: HttpClient) { }
+    constructor(private $http: HttpClient) {
+        this.loadUser();
+     }
 
-    loginSystem = () => {
-        const getPackageSuccess = (response: any): Promise<responseObject[]> => {            
-            return response.json() || {};
+    // load items from local storage
+    loadUser() {
+
+        let item = localStorage != null ? localStorage[this.userName + '_items'] : null;
+        debugger;
+        if (item != null && JSON != null) {
+            try {
+                item = JSON.parse(item);
+                this.user = {
+                    userid: item.userid
+                }
+            } catch (err) {
+                // ignore errors while loading...
+            }
         }
+        return this.user;
+    }
 
-        return this.$http.get(this.baseUri + `/user/login`)
-            .toPromise()
-            .then(getPackageSuccess)
-            .catch(this.errorHandler);
+    // save items to local storage
+    saveUser() {
+        debugger;
+        if (localStorage != null && JSON != null) {
+            localStorage[this.userName + '_items'] = JSON.stringify(this.user);
+        }
+    }
+
+    addItem(userid) {
+        const _return = true;
+        this.user = {
+            userid: userid
+        }
+        // save changes
+        this.saveUser();
+    return _return;
     }
 	
 	login = (email: string, password: string) => {
         const getPackageSuccess = (response: any): Promise<responseObject> => {            
-            return response.json() || {};
+            return response || {};
         }
 		let body = {
-                        email: email,
-                        password: password
-                    };
+            email: email,
+            password: password
+        };
 		return this.$http.post(this.baseUri + `/user/login`, body)
             .toPromise()
             .then(getPackageSuccess)
@@ -59,17 +90,17 @@ export class UserService {
             return response || {};
         }
 
-            let body = {
-                            firstname: firstname, 
-                            lastname: lastname, 
-                            email:email, 
-                            userType: "1"
-                        };
+        let body = {
+            firstname: firstname, 
+            lastname: lastname, 
+            email:email, 
+            userType: "1"
+        };
 
-            return this.$http.post(this.baseUri + `/user/create`, body)
-                .toPromise()
-                .then(registerUserObjectSuccess)
-                .catch(this.errorHandler);
+        return this.$http.post(this.baseUri + `/user/create`, body)
+            .toPromise()
+            .then(registerUserObjectSuccess)
+            .catch(this.errorHandler);
             
     }
 

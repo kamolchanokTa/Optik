@@ -35,15 +35,15 @@ export class LoginComponent implements OnInit {
     }
 	
 	loginObject(){
-		
 		const failToLoginObjects = (error: any) => {
-		this.loading = false;
-		this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
+		    this.loading = false;
+		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
 		
-		this.userSvc.login(this.model.email, this.model.password)
+		this.userSvc.login(this.model.email, md5(this.model.password))
             .then((result) => {
                 this.loading = true;
+                this.userSvc.addItem(result.id);
                 this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.email +" as username"  });
             }, failToLoginObjects);
 	}

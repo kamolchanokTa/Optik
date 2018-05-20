@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
                 if(result.data){
                     var userObject = result.data;
                     console.log("moving to updateCustomerAddress");
+                    this.userSvc.addItem(userObject.id);
                     this.router.navigate(["/update-address", userObject]);
                 }
             }, failToRegisterObjects);

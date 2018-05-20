@@ -1,4 +1,5 @@
 <div id="cart-detail">
+        <notifier [messages]="notifyMessages"></notifier>
         <table class="table tab-shop">
 
             <!-- header -->
@@ -60,10 +61,15 @@
             <p class="text-info">
                 <button id="orderNowButton" class="btn btn-block btn-link" 
                         (click)="checkout()"
-                        [disabled]="cartService.getTotalCount(null) < 1">
+                        [disabled]="cartService.getTotalCount(null) < 1 && !isAbleToCheckout()">
                     Order Now
                 </button>
             </p>
+        </div>
+        <div [hidden]="isAbleToCheckout()" >
+            <label>register</label>
+            <register>
+            </register>
         </div>
 </div>
             
