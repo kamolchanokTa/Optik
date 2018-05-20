@@ -13,25 +13,8 @@ class ProductService {
         this.baseEndpoint = 'http://localhost:8080';
     }
 
-    getListOfProductOverview = (req: any, res: any) => {
-        const uri = this.baseEndpoint + '/productoverview';
-        const body = { };
-        const requestOpt = this.http.createOption(uri, body);
-
-        const getPermissionObjectSuccess = (data: any) => {
-            res.send(200, data);
-        };
-
-        this.http.postAsync(requestOpt)
-            .then(getPermissionObjectSuccess)
-            .catch((error) => {
-                this.errorHandler(error);
-                res.send(error.code || 500, error.message || "Internal server error");
-            });
-    }
-
-    getProducts =  (req: any, res: any) => {
-        const uri = this.baseEndpoint + '/products';
+    getCartsByCustomer =  (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/orders/get/user?userid='+req.body.id;
         const body = { };
         const requestOpt = this.http.createOption(uri, body);
         const getvalueSuccess = (data: any) => {
@@ -64,24 +47,24 @@ class ProductService {
             });
     }
 
-    saveProduct = (req: any, res: any) => {
-        const uri = this.baseEndpoint + '/product/create';
+    saveCart = (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/order/create';
         console.log(req.body);
         const body = {
-            "name": req.body.name,
-            "productType": req.body.productType,
-            "image": req.body.image,
-            "price":req.body.price,
-            "description": req.body.description
+            "userid": req.body.userid,
+            "totalprice": req.body.totalprice,
+            "deliverymethod": req.body.deliverymethod,
+            "orderdetails":req.body.orderdetails,
+            "orderdate": req.body.orderdate
         };
         const requestOpt = this.http.createOption(uri, body);
 
-        const saveProductSuccess = (data: any) => {
+        const saveCartSuccess = (data: any) => {
             res.send(200, data);
         };
 
         this.http.postAsync(requestOpt)
-            .then(saveProductSuccess)
+            .then(saveCartSuccess)
             .catch((error) => {
                 this.errorHandler(error);
                 res.send(error.code || 500, error.message || "Internal server error");

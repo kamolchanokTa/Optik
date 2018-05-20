@@ -4,12 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductOverviewComponent } from './components/product-overview/product-overview.component';
 import { RegisterationComponent } from './components/registeration/registeration.component';
 import { ProductCreationComponent } from './components/product-creation/product-creation.component';
+import { ProductDetailComponent} from './components/product-detail/product-detail.component';
+import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/product-overview', pathMatch: 'full' },
     { path: 'product-overview', component: ProductOverviewComponent },
     { path: 'registeration', component: RegisterationComponent },
     { path: 'product-create', component: ProductCreationComponent },
+    { path: 'product-detail', component: ProductDetailComponent },
+    { path: 'cart-detail', component: CartDetailComponent },
 ]
 
 @NgModule({

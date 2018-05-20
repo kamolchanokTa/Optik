@@ -2,10 +2,13 @@
     <h2>Product Overview</h2>
     <table>
         <tbody>
-            <tr *ngFor="let v of valueList">
-                <td><img [attr.src]="b64toBlob(v.image,'image/jpeg',512)"></td>
+            <tr *ngFor="let product of productList">
+                <td><label>{{product.name}}</label></td>
+                <td><label>{{product.description}}</label></td>
+                <td><img [attr.src]="b64toBlob(product.image,'image/jpeg',512)"></td>
+                <td><button class="cta" (click)="moreDetail(product.id)">detail</button></td>
             </tr>
         </tbody>
     </table>
-    <button class="cta" (click)="routeCreateProduct()">Route</button>
+    
 </div>

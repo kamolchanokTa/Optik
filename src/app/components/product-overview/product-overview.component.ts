@@ -15,12 +15,12 @@ import * as _ from "lodash";
 
 export class ProductOverviewComponent implements OnInit {
     // private fields
-    valueList: any[];
+    productList: any[];
     loading: boolean;
 
     ngOnInit() {
         this.loading = true;
-        this.valueList = [];
+        this.productList = [];
         this.getProducts();
     }
 
@@ -34,24 +34,10 @@ export class ProductOverviewComponent implements OnInit {
             this.loading = false;
         };
         debugger;
-        this.productSvc.getProductObject()
+        this.productSvc.getProducts()
             .then((result) => {
                 this.loading = false;
-                this.valueList = result.data;
-                    // _.forEach(result.data, function(product, sKey) {
-                    //     if  (product != null) {
-                    //       let value={
-                    //           id: product.id,
-                    //           name: product.name,
-                    //           image: b64toBlob(product.image,'image/jpeg',512),
-                    //           productType: product.productType,
-                    //           price: product.price,
-                    //           description: product.description,
-                    //           availableproduct: product.availableproduct
-                    //       }
-                    //       this.valueList.push(value);
-                    //     }
-                    //   });
+                this.productList = result.data;
                 console.log(result);
             }, failToGetValueObjects);
                 // the first argument is a function which runs on success
@@ -59,12 +45,13 @@ export class ProductOverviewComponent implements OnInit {
     }
 
     b64toBlob(b64Data, contentType, sliceSize) {
-      
       return "data:"+contentType+ ";base64,"+b64Data;
     }
 
-    routeCreateProduct(){
-        debugger;
-        this.router.navigate(["/product-create", this.valueList[0]]);
+    moreDetail(id: String){
+        let product = {
+            id: id
+        };
+        this.router.navigate(["/product-detail", product]);
     }
 }

@@ -1,0 +1,10 @@
+<div id="product-detail">
+    <h2>Product Detail</h2>
+    <label>Name: {{product.name}}</label>
+    <label>description: {{product.description}}</label>
+    <img [attr.src]="b64toBlob(product.image,'image/jpeg',512)">
+    <label>Price: {{product.price}}</label>
+    <label>Produc Type: {{product.productType}}</label>
+    <label>Number of Available product: {{product.availableproduct}}</label>
+    <button class="cta" (click)="addToCart(product)">Add to Cart</button>
+</div>

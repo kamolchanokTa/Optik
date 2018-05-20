@@ -15,6 +15,17 @@ export class ProductObject {
     description: string;
 }
 
+export class ProductCartObject {
+    id: string
+    name: string;
+    productType: string;
+    image: string;
+    price: number;
+    description: string;
+    availableproduct: number;
+    quantity: number;
+}
+
 export class ResponseObject {
     status: string;
     message: string;
@@ -32,7 +43,7 @@ export class ProductService {
 
     constructor(private $http: HttpClient) { }
 
-    getProductObject = () => {
+    getProducts = () => {
         const getPackageSuccess = (response: any): Promise<ResponseObject> => {            
             return response || {};
         }
@@ -54,12 +65,13 @@ export class ProductService {
             .catch(this.errorHandler);
     }
 
-    getValueObjects = () => {
-        const getPackageSuccess = (response: any): Promise<valueObject[]> => {            
+    getProduct = (productId: any) => {
+        const getPackageSuccess = (response: any): Promise<any> => {            
             return response || {};
         }
-
-        return this.$http.get(this.baseUri + `/values`)
+        console.log("product Id: "+ productId);
+        debugger;
+        return this.$http.post(this.baseUri + `/product/get`,productId)
             .toPromise()
             .then(getPackageSuccess)
             .catch(this.errorHandler);
