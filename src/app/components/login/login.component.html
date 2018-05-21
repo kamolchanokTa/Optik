@@ -20,7 +20,7 @@
 					<div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
 				</div>
 				<div class="form-group">
-					<button class="cta btn btn-secondary" (click)="loginObject()">Login</button>
+					<button class="primary-btn" (click)="loginObject()">Login</button>
 					<a [routerLink]="['/registeration']" class="btn btn-link">Register</a>
 				</div>	
 			</form>	
