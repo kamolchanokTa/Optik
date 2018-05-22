@@ -17,7 +17,7 @@ export class CartService {
 
     public config: any;
     private cartItemsObserver: any;
-    public cartName = 'AffiliateMarketingCart';
+    public cartName = 'CartDetail';
     public clearCart = false;
     public items = [];
 
@@ -25,6 +25,11 @@ export class CartService {
     unitprice: any;
     quantity: any;
     shippingCost: any;
+    productName: any;
+    productDescription: any;
+    productAmount: any;
+    productImage: any;
+    productType: any;
 
     serviceName: any;
     merchantproductid: any;
@@ -47,7 +52,7 @@ export class CartService {
                     let item = items[i];
                     if (item.productid != null &&
                         item.unitprice != null && item.quantity != null) {
-                        item = new this.cartItem(item.productid,item.unitprice,item.quantity, item.shippingCost);
+                        item = new this.cartItem(item.productid,item.unitprice,item.quantity, item.shippingCost,item.productName,item.productDescription, item.productAmount,item.productImage,item.productType);
                         this.items.push(item);
                     }
                 }
@@ -67,7 +72,7 @@ export class CartService {
     }
 
     // adds an item to the cart
-    addItem(productid, unitprice,quantity, shippingCost) {
+    addItem(productid, unitprice,quantity, shippingCost,productName,productDescription, productAmount,productImage,productType) {
         const _return = true;
         let found = false;
         debugger;
@@ -83,7 +88,7 @@ export class CartService {
         }
         // if item wasn't already in cart, add it now
         if (!found) {
-            const item = new this.cartItem(productid,unitprice, quantity,shippingCost);
+            const item = new this.cartItem(productid,unitprice, quantity,shippingCost,productName,productDescription, productAmount,productImage,productType);
             this.items.push(item);
         }
         // save changes
@@ -140,6 +145,7 @@ export class CartService {
     clearItems() {
         this.items = [];
         this.saveItems();
+        localStorage.removeItem(this.cartName + '_items');
     }
 
     createGuproductid4(): string {
@@ -545,11 +551,16 @@ export class CartService {
     // ----------------------------------------------------------------
     // items in the cart
     //
-    cartItem(productid, unitprice, quantity, shippingCost) {
+    cartItem(productid, unitprice, quantity, shippingCost,productName,productDescription, productAmount,productImage,productType) {
         this.productid = productid;
         this.unitprice = unitprice * 1;
         this.quantity = quantity * 1;
         this.shippingCost = shippingCost*1;
+        this.productName = productName;
+        this.productDescription= productDescription;
+        this.productAmount = productAmount;
+        this.productImage = productImage;
+        this.productType=productType;
     }
 
     saveCartObjectInDB = (cart: any) => {

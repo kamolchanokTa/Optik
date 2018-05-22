@@ -9,6 +9,7 @@ import { UpdateCreditComponent } from './components/update-credit/update-credit.
 import { ProductCreationComponent } from './components/product-creation/product-creation.component';
 import { ProductDetailComponent} from './components/product-detail/product-detail.component';
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
+import { TopHeaderComponent} from './components/top-header/top-header.component';
 
 //import services
 import { ProductService } from './services/product.service';
@@ -29,7 +30,8 @@ export const componentList = [
     LoginComponent,
     RegisterComponent,
     UpdateAddressComponent, 
-    UpdateCreditComponent
+    UpdateCreditComponent,
+    TopHeaderComponent
 ];
 
 export const serviceList = [ProductService, UserService, LocalStorageService, CartService];

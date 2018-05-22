@@ -1,3 +1,6 @@
+<div>
+        <top-header></top-header>
+    </div>
 <div id="po-table" >
     <h2>Product Overview</h2>
     <table>
@@ -6,7 +9,7 @@
                 <td><label>{{product.name}}</label></td>
                 <td><label>{{product.description}}</label></td>
                 <td><img [attr.src]="b64toBlob(product.image,'image/jpeg',512)"></td>
-                <td><button class="cta" (click)="moreDetail(product.id)">detail</button></td>
+                <td><button class="primary-btn" (click)="moreDetail(product.id)">detail</button></td>
             </tr>
         </tbody>
     </table>

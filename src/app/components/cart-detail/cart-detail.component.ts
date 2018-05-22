@@ -18,6 +18,7 @@ export class CartDetailComponent implements OnInit {
     // private fields
     loading: boolean;
     notifyMessages: INotifyMessage[];
+    isCheckoutProcessing: boolean
 
     product: any={
         id:this.route.snapshot.params['id'],
@@ -31,6 +32,7 @@ export class CartDetailComponent implements OnInit {
         this.loading = true;
         this.notifyMessages = [];
         console.log("product in cart: " + this.product);
+        this.isCheckoutProcessing= false;
     }
 
     constructor(private router: Router,
@@ -43,6 +45,20 @@ export class CartDetailComponent implements OnInit {
     }
 
     checkout(){
+        if(this.isAbleToCheckout()){
+            this.saveCart();
+        }
+    }
+    isAbleToCheckout(){
+        if(this.userService.user.userid != ''){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    saveCart(){
         let orderdetails = [];
         this.cartService.items.forEach((item, index) => {
             let orderdetail = {
@@ -55,7 +71,7 @@ export class CartDetailComponent implements OnInit {
         console.log(Date.now.toString());
         debugger;
         let cart = {
-            "userid": "0e1bb14a-a579-40aa-86d2-f5f58f12ca30",// this.userService.getUserLocal(),
+            "userid": this.userService.user.userid,// this.userService.getUserLocal(),
             "totalprice": this.cartService.getTotalPrice(null),
             "deliverymethod": "normal",
             "orderdetails":orderdetails,
@@ -69,7 +85,9 @@ export class CartDetailComponent implements OnInit {
         this.cartService.saveCartObjectInDB(cart).then((result) => {
             this.loading = true;
             console.log(result);
+            this.cartService.clearItems();
             this.notifyMessages.push({ type: "confirm", message: "Successful create!! cart "  });
+
         }, failToSaveObjects);
     }
 }

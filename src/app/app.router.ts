@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateAddressComponent } from './components/update-address/update-address.component';
 import { UpdateCreditComponent } from './components/update-credit/update-credit.component';
-
+import { TopHeaderComponent} from './components/top-header/top-header.component';
 import { ProductCreationComponent } from './components/product-creation/product-creation.component';
 import { ProductDetailComponent} from './components/product-detail/product-detail.component';
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
@@ -23,6 +23,7 @@ const appRoutes: Routes = [
     { path: 'product-create', component: ProductCreationComponent },
     { path: 'product-detail', component: ProductDetailComponent },
     { path: 'cart-detail', component: CartDetailComponent },
+    { path: 'top-header', component: TopHeaderComponent}
 ]
 
 @NgModule({

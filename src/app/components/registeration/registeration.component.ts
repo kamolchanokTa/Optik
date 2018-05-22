@@ -32,7 +32,7 @@ export class RegisterationComponent implements OnInit {
     zipcode: string;
     dob: string;
     ngOnInit() {
-        this.loading = true;
+        this.loading = false;
         this.notifyMessages = [];
         debugger;
         this.countryList = countries;
