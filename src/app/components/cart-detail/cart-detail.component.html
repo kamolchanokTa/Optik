@@ -9,19 +9,20 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="billing-details">
                                 <div [hidden]="isAbleToCheckout()" >
-                                    <p>Already a customer ? <a href="#">Login</a></p>
-                                    <div class="section-title">
-                                        <h3 class="title">Billing Details</h3>
+                                    <p>Already a customer ? <button class="main-btn" (click)="loginOpen()">Login</button>
+                                    <div [hidden]="!isOpenLogin" >
+                                        <login>
+                                        </login>
                                     </div>
-                                    <div [hidden]="isUserCreated()" >
+                                    <div [hidden]="isUserCreated() || isOpenLogin" >
                                         <register>
                                         </register>
                                     </div>
-                                    <div [hidden]="isAddressUpdated() || !isUserCreated()" >
+                                    <div [hidden]="(isAddressUpdated() || !isUserCreated()) || isOpenLogin" >
                                             <update-address>
                                             </update-address>
                                     </div>
-                                    <div [hidden]="isCreditCardUpdated() || !isAddressUpdated() || !isUserCreated()" >
+                                    <div [hidden]="(isCreditCardUpdated() || !isAddressUpdated() || !isUserCreated()) || isOpenLogin" >
                                             <update-credit>
                                             </update-credit>
                                     </div>
