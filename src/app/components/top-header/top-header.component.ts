@@ -51,4 +51,10 @@ export class TopHeaderComponent implements OnInit {
             return false;
         }
     }
+
+    b64toBlob(b64Data, contentType, sliceSize) {
+        if(b64Data != ''){
+            return "data:"+contentType+ ";base64,"+b64Data;
+        }
+    }
 }

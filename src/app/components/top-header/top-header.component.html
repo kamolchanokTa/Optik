@@ -64,7 +64,7 @@
                             </div>
                             <ul class="custom-menu">
                                 <li [hidden]="!isUserExist()"><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                                <li><a href="/cart-detail"><i class="fa fa-check"></i> Checkout</a></li>
+                                <li [hidden]="!isUserExist()"><a href="/order-history"><i class="fa fa-check"></i>My Order</a></li>
                                 <li [hidden]="isUserExist()"><a href="/login"><i class="fa fa-unlock-alt"></i> Login</a></li>
                                 <li [hidden]="isUserExist()"><a href="/registeration"><i class="fa fa-user-plus"></i> Create An Account</a></li>
                             </ul>
@@ -85,30 +85,19 @@
                             <div class="custom-menu">
                                 <div id="shopping-cart">
                                 <div class="shopping-cart-list">
-                                    <div class="product product-widget">
-                                    <div class="product-thumb">
-                                        <img src="../assets/img/thumb-product01.jpg" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-                                        <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                    </div>
-                                    <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                    <div class="product product-widget">
-                                    <div class="product-thumb">
-                                        <img src="../assets/img/thumb-product01.jpg" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-                                        <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                    </div>
-                                    <button class="cancel-btn"><i class="fa fa-trash"></i></button>
+                                    <div class="product product-widget" *ngFor="let item of (cartService.items)">
+                                        <div class="product-thumb" >
+                                            <img [attr.src]="b64toBlob(item.productImage,'image/jpeg',100)">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-price">{{item.unitprice}} <span class="qty">x {{item.quantity}}</span></h3>
+                                            <h2 class="product-name"><a href="#">{{item.productName}}</a></h2>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="shopping-cart-btns">
-                                    <button class="main-btn">View Cart</button>
-                                    <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+                                <div class="shopping-cart-btns" [hidden]="cartService.getTotalCount(null) < 1" >
+                                    <button class="main-btn" routerLink="/cart-detail">View Cart</button>
+                                    <button class="primary-btn" routerLink="/cart-detail">Checkout <i class="fa fa-arrow-circle-right"></i></button>
                                 </div>
                                 </div>
                             </div>

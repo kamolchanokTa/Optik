@@ -85,7 +85,9 @@ export class CartDetailComponent implements OnInit {
         this.cartService.saveCartObjectInDB(cart).then((result) => {
             this.loading = true;
             console.log(result);
+            this.cartService.clearItems();
             this.notifyMessages.push({ type: "confirm", message: "Successful create!! cart "  });
+
         }, failToSaveObjects);
     }
 }
