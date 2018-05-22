@@ -28,7 +28,10 @@ export class UserService {
     private baseUri: string = `api`;
     public userName = 'UserName';
     public user = {
-        userid: '',
+        name: null,
+        userid: null,
+        address: null,
+        creditcard: null
     }
 
     constructor(private $http: HttpClient) {
@@ -44,7 +47,10 @@ export class UserService {
             try {
                 item = JSON.parse(item);
                 this.user = {
-                    userid: item.userid
+                    name: item.name,
+                    userid: item.userid,
+                    address: item.address,
+                    creditcard:item.creditcard
                 }
             } catch (err) {
                 // ignore errors while loading...
@@ -61,10 +67,13 @@ export class UserService {
         }
     }
 
-    addItem(userid) {
+    addItem(name,userid,address,creditcard) {
         const _return = true;
         this.user = {
-            userid: userid
+            name:name,
+            userid: userid,
+            address:address,
+            creditcard:creditcard
         }
         // save changes
         this.saveUser();

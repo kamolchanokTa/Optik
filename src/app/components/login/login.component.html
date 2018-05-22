@@ -4,9 +4,7 @@
         <loader medium=true></loader>
     </div>
     <notifier [messages]="notifyMessages"></notifier>
-	<div class = "container">
-		<div class="wrapper">
-			<form class="form-signin bg-light" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>     
+			<form  name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>     
 		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
 			  <hr class="colorgraph"><br>
 			    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
@@ -24,7 +22,4 @@
 					<a [routerLink]="['/registeration']" class="btn btn-link">Register</a>
 				</div>	
 			</form>	
-				
-		</div>
-	</div>
 </div>

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 		this.userSvc.login(this.model.email, md5(this.model.password))
             .then((result) => {
                 this.loading = true;
-                this.userSvc.addItem(result.id);
+                this.userSvc.addItem(result.name,result.id,result.address,result.creditcardtype);
                 this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.email +" as username"  });
             }, failToLoginObjects);
 	}

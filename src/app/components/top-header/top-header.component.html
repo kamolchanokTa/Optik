@@ -59,9 +59,13 @@
                                 </div>
                                 <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
                             </div>
-                            <div [hidden]="isUserExist()">
-                                <a  href="/login" class="text-uppercase">Login</a> / <a href="/registeration" class="text-uppercase">Join</a>
-                            </div>
+                            <div [hidden]="isUserExist()" class="dropdown default-dropdown">
+                                <a  class="dropdown-toggle text-uppercase" data-toggle="dropdown" aria-expanded="true">Login</a>
+								<div class="custom-menu">
+									<login></login>
+								</div>
+								<a href="/registeration" class="registeration dropdown-toggle text-uppercase" data-toggle="dropdown" aria-expanded="true">/ Join</a>
+							</div>
                             <ul class="custom-menu">
                                 <li [hidden]="!isUserExist()"><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
                                 <li [hidden]="!isUserExist()"><a href="/order-history"><i class="fa fa-check"></i>My Order</a></li>
@@ -124,7 +128,7 @@
 		<div class="container">
 			<div id="responsive-nav">
 				<!-- category nav -->
-				<div class="category-nav">
+				<div class="category-nav show-on-click">
 						<span class="category-header">Categories <i class="fa fa-list"></i></span>
 						<ul class="category-list">
 							<li><a href="#">New Collection</a></li>

@@ -9,7 +9,7 @@ import { CartService} from "../../services/cart-service";
 import * as _ from "lodash";
 
 @Component({
-    selector: "",
+    selector: "#po-table",
     templateUrl: "./product-overview.component.html",
     // styleUrls: ["./po-list.style.scss"]
 })

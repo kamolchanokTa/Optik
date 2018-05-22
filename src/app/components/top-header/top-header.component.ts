@@ -11,7 +11,7 @@ import * as _ from "lodash";
 @Component({
     selector: "#top-header",
     templateUrl: "./top-header.component.html",
-    // styleUrls: ["./registeration.style.css"]
+    styleUrls: ["./top-header.style.css"]
 })
 
 export class TopHeaderComponent implements OnInit {
@@ -44,7 +44,7 @@ export class TopHeaderComponent implements OnInit {
         ){
     }
     isUserExist(){
-        if(this.userService.user.userid != ''){
+        if(this.userService.user.userid != null){
             return true;
         }
         else{

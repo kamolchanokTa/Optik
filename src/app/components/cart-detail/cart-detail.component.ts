@@ -18,8 +18,11 @@ export class CartDetailComponent implements OnInit {
     // private fields
     loading: boolean;
     notifyMessages: INotifyMessage[];
-    isCheckoutProcessing: boolean
-
+    isCheckoutProcessing: boolean;
+    isOpenLogin: boolean;
+    shipment: any;
+    shipmentMethod: any;
+    billingStep :number;
     product: any={
         id:this.route.snapshot.params['id'],
         name: this.route.snapshot.params['name'],
@@ -31,8 +34,26 @@ export class CartDetailComponent implements OnInit {
     ngOnInit() {
         this.loading = true;
         this.notifyMessages = [];
+        this.isOpenLogin= false;
         console.log("product in cart: " + this.product);
         this.isCheckoutProcessing= false;
+        this.shipment = [];
+        this.billingStep= 0;
+        this.shipment.push({ 
+            id: 0,
+            name: "Free Shipping",
+            price: 0
+        });
+        this.shipment.push({
+            id:1,
+            name: "Standard",
+            price: 5
+        });
+        this.shipmentMethod = {
+            id: 0,
+            name: "Free Shipping",
+            price: 0
+        }
     }
 
     constructor(private router: Router,
@@ -50,7 +71,33 @@ export class CartDetailComponent implements OnInit {
         }
     }
     isAbleToCheckout(){
-        if(this.userService.user.userid != ''){
+        if(this.userService.user.userid != null && this.userService.user.address != null && this.userService.user.creditcard != null)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    isUserCreated(){
+        if(this.userService.user.userid != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    isAddressUpdated(){
+        if(this.userService.user.address != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    isCreditCardUpdated(){
+        if(this.userService.user.creditcard != null){
             return true;
         }
         else{
@@ -89,5 +136,18 @@ export class CartDetailComponent implements OnInit {
             this.notifyMessages.push({ type: "confirm", message: "Successful create!! cart "  });
 
         }, failToSaveObjects);
+    }
+
+    b64toBlob(b64Data, contentType, sliceSize) {
+        return "data:"+contentType+ ";base64,"+b64Data;
+    }
+
+    onSelectionChange(selectedShipping: any) {
+        this.shipmentMethod = selectedShipping;
+        this.cartService.updateShipping(this.shipmentMethod.price);
+    }
+
+    loginOpen() {
+        this.isOpenLogin = true;
     }
 }
