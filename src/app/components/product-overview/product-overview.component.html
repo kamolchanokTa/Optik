@@ -1,17 +1,142 @@
 <div>
-        <top-header></top-header>
-    </div>
-<div id="po-table" >
-    <h2>Product Overview</h2>
-    <table>
-        <tbody>
-            <tr *ngFor="let product of productList">
-                <td><label>{{product.name}}</label></td>
-                <td><label>{{product.description}}</label></td>
-                <td><img [attr.src]="b64toBlob(product.image,'image/jpeg',512)"></td>
-                <td><button class="primary-btn" (click)="moreDetail(product.id)">detail</button></td>
-            </tr>
-        </tbody>
-    </table>
-    
+    <top-header></top-header>
 </div>
+
+<div id="home">
+		<!-- container -->
+		<div class="container">
+			<!-- home wrap -->
+			<div class="home-wrap">
+				<!-- home slick -->
+				<div id="home-slick">
+					<!-- banner -->
+					<div class="banner banner-1">
+						<img src="../../../assets/img/Banner_HP_marshal_steven_klein_desktop.jpeg" alt="">
+						<div class="banner-caption text-center">
+							<h1>Spring Collection</h1>
+							<h3 class="white-color font-weak">Up to 50% Discount</h3>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+					<!-- /banner -->
+
+					<!-- banner -->
+					<div class="banner banner-1">
+						<img src="../../../assets/img/rb_outdoorsman_reloaded_hero_teaser_desktop.jpeg" alt="">
+						<div class="banner-caption">
+							<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+					<!-- /banner -->
+
+					<!-- banner -->
+					<div class="banner banner-1">
+						<img src="../../../assets/img/Banner_hp_At_Collection_desktop.jpeg" alt="">
+						<div class="banner-caption">
+							<h1 class="white-color">New Product <span>Collection</span></h1>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+					<!-- /banner -->
+				</div>
+				<!-- /home slick -->
+			</div>
+			<!-- /home wrap -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /HOME -->
+
+	<!-- section -->
+	
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section-title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Deals Of The Day</h2>
+						<div class="pull-right">
+							<div class="product-slick-dots-1 custom-dots"></div>
+						</div>
+					</div>
+				</div>
+				<!-- /section-title -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img src="../../../assets/img/super_adv_ss18-9_1e4b0553-1ee5-439c-b4e1-8278d9b1c73b_1920x.jpg" alt="">
+						<div class="banner-caption">
+							<h2 class="white-color">NEW<br>COLLECTION</h2>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+
+				<!-- Product Slick -->
+				<!-- <div class="col-md-9 col-sm-6 col-xs-6" >
+					<div class="row">
+						<div id="product-slick-1" class="product-slick">
+							<div class="product product-single" *ngFor="let product of productList">
+								<div class="product-thumb">
+									<div class="product-label">
+										<span>New</span>
+									</div>
+									<button class="main-btn quick-view" (click)="moreDetail(product.id)" ><i class="fa fa-search-plus"></i> Quick view</button>
+									<img [attr.src]="b64toBlob(product.image,'image/jpeg',512)" alt="">
+								</div>
+								<div class="product-body">
+									<h3 class="product-price">€ {{product.price}} </h3>
+									<h2 class="product-name"><a href="#">{{product.name}}</a></h2>
+									<div class="product-btns">
+										<button class="primary-btn add-to-cart" (click)="addToCart(product)" ><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+                <!-- /Product Slick -->
+                
+                <!-- Product Slick -->
+				<div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="row">
+                            <div id="product-slick-1" class="product-slick" >
+                                <!-- Product Single -->
+                                <div *ngFor="let product of productList">
+                                <div class="product product-single">
+                                    
+                                        <div class="product-thumb">
+                                            <div class="product-label">
+                                                <span>New</span>
+                                            </div>
+                                            <button class="main-btn quick-view"><i class="fa fa-search-plus" (click)="moreDetail(product.id)"></i> Quick view</button>
+                                            <img [attr.src]="b64toBlob(product.image,'image/jpeg',512)" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-price">€ {{product.price}}</h3>
+                                            <h2 class="product-name"><a href="#">{{product.name}}</a></h2>
+                                            <div class="product-btns">
+                                                <button class="primary-btn add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Product Single -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Product Slick -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+    <!-- /section -->

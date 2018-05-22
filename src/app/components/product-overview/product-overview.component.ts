@@ -4,11 +4,12 @@ import { NgModel } from "@angular/forms";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';  
 
 import { ProductService, valueObject} from "../../services/product.service";
+import { CartService} from "../../services/cart-service";
 
 import * as _ from "lodash";
 
 @Component({
-    selector: "#po-table",
+    selector: "",
     templateUrl: "./product-overview.component.html",
     // styleUrls: ["./po-list.style.scss"]
 })
@@ -26,7 +27,8 @@ export class ProductOverviewComponent implements OnInit {
 
     constructor(private router: Router,
         private productSvc: ProductService,
-        private sanitizer: DomSanitizer){
+        private sanitizer: DomSanitizer,
+        public cartService: CartService){
     }
 
     getProducts() {
@@ -37,7 +39,15 @@ export class ProductOverviewComponent implements OnInit {
         this.productSvc.getProducts()
             .then((result) => {
                 this.loading = false;
-                this.productList = result.data;
+                let count = 0; 
+                this.productList = _.filter(result.data, (item, idx) => {
+                    let productType = item.productType.toLowerCase();
+    
+                    if (productType.includes('newcollection') && count < 5 ) {
+                        count++;
+                        return item;
+                    }
+                });
                 console.log(result);
             }, failToGetValueObjects);
                 // the first argument is a function which runs on success
@@ -53,5 +63,9 @@ export class ProductOverviewComponent implements OnInit {
             id: id
         };
         this.router.navigate(["/product-detail", product]);
+    }
+
+    addToCart(product: any){
+        this.cartService.addItem(product.id,product.price,1,5,product.name, product.description, product.availableproduct, product.image,product.productType);
     }
 }
