@@ -4,7 +4,6 @@
         <loader medium=true></loader>
     </div>
     <notifier [messages]="notifyMessages"></notifier>
-	<div class = "container col-6 mx-auto bg-light">
 		<div class="wrapper">
             <h3 class='text-center'>Update your address!</h3>
             <hr/>
@@ -35,13 +34,11 @@
                             {{country.name}}
                         </option>
                     </select>
-                    {{countrySelected}}
             </div>
-            <div>
-                <button class="primary-btn col-3 col-md-2" (click)="updateAddressObject()">Next</button>
-                <button class='main-btn col-3 col-md-2' routerLink="/registeration">Cancel</button>
-            </div>	
+            <div class="col-6 col-md-5">
+                    <button class="primary-btn" (click)="updateAddressObject()">Next</button>
+                    <button class='main-btn' routerLink="/registeration">Cancel</button>
+            </div>
 				
 		</div>
-	</div>
 </div>

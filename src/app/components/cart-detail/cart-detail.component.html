@@ -6,15 +6,28 @@
     <div class="container">
             <div class="row">
                     <form id="checkout-form" class="clearfix">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="billing-details">
                                 <div [hidden]="isAbleToCheckout()" >
                                     <p>Already a customer ? <a href="#">Login</a></p>
                                     <div class="section-title">
                                         <h3 class="title">Billing Details</h3>
                                     </div>
-                                    <register>
-                                    </register>
+                                    <div [hidden]="isUserCreated()" >
+                                        <register>
+                                        </register>
+                                    </div>
+                                    <div [hidden]="isAddressUpdated() || !isUserCreated()" >
+                                            <update-address>
+                                            </update-address>
+                                    </div>
+                                    <div [hidden]="isCreditCardUpdated() || !isAddressUpdated() || !isUserCreated()" >
+                                            <update-credit>
+                                            </update-credit>
+                                    </div>
+                                </div>
+                                <div [hidden]="!isAbleToCheckout()" >
+                                    <h4 class="title">Customer name: {{userService.user.name}}</h4>
                                 </div>
                             </div>
                         </div>

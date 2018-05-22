@@ -22,7 +22,7 @@ export class CartDetailComponent implements OnInit {
 
     shipment: any;
     shipmentMethod: any;
-
+    billingStep :number;
     product: any={
         id:this.route.snapshot.params['id'],
         name: this.route.snapshot.params['name'],
@@ -37,6 +37,7 @@ export class CartDetailComponent implements OnInit {
         console.log("product in cart: " + this.product);
         this.isCheckoutProcessing= false;
         this.shipment = [];
+        this.billingStep= 0;
         this.shipment.push({ 
             id: 0,
             name: "Free Shipping",
@@ -69,7 +70,33 @@ export class CartDetailComponent implements OnInit {
         }
     }
     isAbleToCheckout(){
-        if(this.userService.user.userid != ''){
+        if(this.userService.user.userid != null && this.userService.user.address != null && this.userService.user.creditcard != null)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    isUserCreated(){
+        if(this.userService.user.userid != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    isAddressUpdated(){
+        if(this.userService.user.address != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    isCreditCardUpdated(){
+        if(this.userService.user.creditcard != null){
             return true;
         }
         else{

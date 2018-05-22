@@ -23,9 +23,9 @@ export class UpdateCreditComponent implements OnInit {
     
     ngOnInit() {
 
-        this.loading = true;
+        this.loading = false;
         this.notifyMessages = [];
-
+        this.id = this.userSvc.user.userid;
     }
 
     constructor(private router: Router,
@@ -42,11 +42,11 @@ export class UpdateCreditComponent implements OnInit {
         };
         this.userSvc.updateCreditObject(this.id, this.model.cardnumber, this.creditTypeSelected, this.model.exp)
             .then((result) => {
-                this.loading = true;
+                this.loading = false;
                 this.notifyMessages.push({ type: "confirm", message: "Successful update credit!! use "+ result.email +" as username"  });
                 if(result.data){
                     var userObject = result.data;
-                    console.log(result);
+                    this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype);
                 }
             }, failToUpdateObjects);
                 

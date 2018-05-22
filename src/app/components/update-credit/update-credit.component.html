@@ -4,7 +4,6 @@
         <loader medium=true></loader>
     </div>
     <notifier [messages]="notifyMessages"></notifier>
-	<div class = "container col-6 mx-auto bg-light">
 
             <h3 class='text-center'>Update your credit!</h3>
             <hr/>
@@ -17,7 +16,6 @@
             <div>
                 <label class="block-left col-6 col-md-5">Credit Card Expired Date:</label>
                     <input class="col-6 col-md-5" id="month" type="month" [(ngModel)]="model.exp" maxlength="50" /> 
-                    {{model.exp}}    
             </div>
 
             <div>
@@ -26,13 +24,10 @@
 					  <option value="visa">visa</option>
 					  <option value="master">master</option>
 					</select>
-                    {{creditTypeSelected}}
             </div>
-            <div>
-                <button class='primary-btn col-3 col-md-2' routerLink="/registeration">Cancel</button>
-                <button class="main-btn col-3 col-md-2" (click)="updateCreditObject()">Next</button>
+            <div class="col-6 col-md-5">
                 
-            </div>	
-
-	</div>
+                <button class="primary-btn" (click)="updateCreditObject()">Next</button>
+                <button class='main-btn' routerLink="/registeration">Cancel</button>
+            </div>
 </div>

@@ -23,10 +23,10 @@ export class UpdateAddressComponent implements OnInit {
     id: string = this.route.snapshot.params['id'];
     
     ngOnInit() {
-
-        this.loading = true;
         this.notifyMessages = [];
         this.countryList = countries;
+        this.loading = false;
+        this.id = this.userSvc.user.userid;
     }
 
     constructor(private router: Router,
@@ -43,13 +43,13 @@ export class UpdateAddressComponent implements OnInit {
         };
         this.userSvc.updateAddressObject(this.id, this.model.address, this.model.city, this.countrySelected, this.model.zipcode)
             .then((result) => {
-                this.loading = true;
+                this.loading = false;
                 debugger;
                 this.notifyMessages.push({ type: "confirm", message: "Successful update address!! use "+ result.id +" as username"  });
                 if(result.data){
                     var userObject = result.data;
-                    console.log("moving to credit page");
-                    this.router.navigate(["/update-credit", userObject]);
+                    debugger;
+                    this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype);
                 }
             }, failToUpdateObjects);
                 

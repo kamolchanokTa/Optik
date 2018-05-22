@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
         private userSvc: UserService) { }
  
     ngOnInit() {
-        this.loading = true;
+        this.loading = false;
         this.notifyMessages = [];
         // reset register status
         // don't know how
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     }
 
     registerObject(){
-        
+        this.loading = true;
         const failToRegisterObjects = (error: any) => {
         this.loading = false;
         this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
@@ -43,13 +43,12 @@ export class RegisterComponent implements OnInit {
         
         this.userSvc.registerCustomer(this.model.firstname, this.model.lastname, this.model.email)
             .then((result) => {
-                this.loading = true;
+                this.loading = false;
                 this.notifyMessages.push({ type: "confirm", message: "Successful register a customer!! use "+ result.email +" as username"  });
                 if(result.data){
                     var userObject = result.data;
                     console.log("moving to updateCustomerAddress");
-                    this.userSvc.addItem(userObject.id);
-                    this.router.navigate(["/update-address", userObject]);
+                    this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype);
                 }
             }, failToRegisterObjects);
     }
