@@ -18,7 +18,10 @@ export class CartDetailComponent implements OnInit {
     // private fields
     loading: boolean;
     notifyMessages: INotifyMessage[];
-    isCheckoutProcessing: boolean
+    isCheckoutProcessing: boolean;
+
+    shipment: any;
+    shipmentMethod: any;
 
     product: any={
         id:this.route.snapshot.params['id'],
@@ -33,6 +36,22 @@ export class CartDetailComponent implements OnInit {
         this.notifyMessages = [];
         console.log("product in cart: " + this.product);
         this.isCheckoutProcessing= false;
+        this.shipment = [];
+        this.shipment.push({ 
+            id: 0,
+            name: "Free Shipping",
+            price: 0
+        });
+        this.shipment.push({
+            id:1,
+            name: "Standard",
+            price: 5
+        });
+        this.shipmentMethod = {
+            id: 0,
+            name: "Free Shipping",
+            price: 0
+        }
     }
 
     constructor(private router: Router,
@@ -89,5 +108,14 @@ export class CartDetailComponent implements OnInit {
             this.notifyMessages.push({ type: "confirm", message: "Successful create!! cart "  });
 
         }, failToSaveObjects);
+    }
+
+    b64toBlob(b64Data, contentType, sliceSize) {
+        return "data:"+contentType+ ";base64,"+b64Data;
+    }
+
+    onSelectionChange(selectedShipping: any) {
+        this.shipmentMethod = selectedShipping;
+        this.cartService.updateShipping(this.shipmentMethod.price);
     }
 }

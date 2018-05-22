@@ -135,7 +135,20 @@ export class CartService {
         for (let i = 0; i < this.items.length; i++) {
             const item = this.items[i];
             if (productid === null || item.productid === productid) {
-                totalPrice += (this.toNumber(item.quantity) * this.toNumber(item.unitprice)) + this.toNumber(item.shippingCost);
+                totalPrice += (this.toNumber(item.quantity) * this.toNumber(item.unitprice)) ;
+            }
+        }
+        totalPrice += this.toNumber(this.shippingCost)
+        return totalPrice;
+    }
+
+    getTotalPriceExcludeShipping(productid) {
+        let totalPrice: any;
+        totalPrice = 0;
+        for (let i = 0; i < this.items.length; i++) {
+            const item = this.items[i];
+            if (productid === null || item.productid === productid) {
+                totalPrice += (this.toNumber(item.quantity) * this.toNumber(item.unitprice));
             }
         }
         return totalPrice;
@@ -561,6 +574,9 @@ export class CartService {
         this.productAmount = productAmount;
         this.productImage = productImage;
         this.productType=productType;
+    }
+    updateShipping(shippingCost){
+        this.shippingCost = shippingCost*1;
     }
 
     saveCartObjectInDB = (cart: any) => {
