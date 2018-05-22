@@ -91,14 +91,14 @@
                                             <div class="product-label">
                                                 <span>New</span>
                                             </div>
-                                            <button class="main-btn quick-view"><i class="fa fa-search-plus" (click)="moreDetail(product.id)"></i> Quick view</button>
+                                            <button class="main-btn quick-view"  (click)="moreDetail(product.id)"><i class="fa fa-search-plus"></i> Quick view</button>
                                             <img [attr.src]="b64toBlob(product.image,'image/jpeg',512)" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-price">€ {{product.price}}</h3>
                                             <h2 class="product-name"><a href="#">{{product.name}}</a></h2>
                                             <div class="product-btns">
-                                                <button class="primary-btn add-to-cart" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                <button class="primary-btn add-to-cart" (click)="addToCart(product)" [disabled]="product.availableproduct < 1"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                             </div>
                                         </div>
                                     </div>

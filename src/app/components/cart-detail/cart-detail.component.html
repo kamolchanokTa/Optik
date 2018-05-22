@@ -80,6 +80,7 @@
                                                     <label>{{item.quantity}}</label>
                                                     <button class="main-btn" type="button" 
                                                             style="text-align: left !important;"  
+                                                            [disabled]="item.productAmount- item.quantity < 1"
                                                             (click)="cartService.addItem(item.productid, item.unitprice, +1)">+</button>
                                                     <button class="main-btn" type="button" style="text-align: left !important;"
                                                             [disabled]="item.quantity < 1"

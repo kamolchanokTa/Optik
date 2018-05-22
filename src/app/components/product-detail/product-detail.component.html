@@ -9,5 +9,5 @@
     <label>Price: {{product.price}}</label>
     <label>Produc Type: {{product.productType}}</label>
     <label>Number of Available product: {{product.availableproduct}}</label>
-    <button class="primary-btn" (click)="addToCart(product)">Add to Cart</button>
+    <button class="primary-btn" (click)="addToCart(product)" [disabled]="product.availableproduct < 1">Add to Cart</button>
 </div>
