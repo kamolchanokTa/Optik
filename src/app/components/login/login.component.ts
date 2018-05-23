@@ -40,11 +40,18 @@ export class LoginComponent implements OnInit {
 		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
 		
-		this.userSvc.login(this.model.email, md5(this.model.password))
+        this.userSvc.login(this.model.email, md5(this.model.password))
             .then((result) => {
-                this.loading = true;
-                this.userSvc.addItem(result.name,result.id,result.address,result.creditcardtype);
-                this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.email +" as username"  });
+                if(result.data){
+                    this.loading = false;
+                    this.userSvc.addItem(result.data.name,result.data.id,result.data.address,result.data.creditcardtype);
+                    this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.data.email +" as username"  });
+                }
+                else {
+                    this.loading = false;
+		            this.notifyMessages.push({ type: "error", message: result.message || result || "Internal server error"  });
+                } 
+
             }, failToLoginObjects);
 	}
 }

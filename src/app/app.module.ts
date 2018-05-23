@@ -7,6 +7,7 @@ import { RouteModule } from './app.router';
 import { AppComponent } from './app.component';
 import { componentList, serviceList, bootstrap } from './components.register';
 import { CustomElementModule } from './custom-elements/custom.element.module';
+import { PersistenceModule } from 'angular-persistence';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CustomElementModule } from './custom-elements/custom.element.module';
     FormsModule,
     HttpClientModule,
     RouteModule,
-    CustomElementModule
+    CustomElementModule,
+    PersistenceModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [serviceList],

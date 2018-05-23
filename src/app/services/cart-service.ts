@@ -5,6 +5,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
+import { PersistenceService, StorageType, PersistenceConfig } from 'angular-persistence';
 
 declare var jQuery: any;
 declare var $: any;
@@ -35,7 +36,7 @@ export class CartService {
     merchantproductid: any;
     options: any;
 
-    constructor(private $http: HttpClient) {
+    constructor(private $http: HttpClient, private persistenceService: PersistenceService) {
         this.loadItems();
 
     }
@@ -43,7 +44,7 @@ export class CartService {
     // load items from local storage
     loadItems() {
 
-        let items = localStorage != null ? localStorage[this.cartName + '_items'] : null;
+        let items =  this.persistenceService.get(this.cartName,StorageType.SESSION) != null ? this.persistenceService.get(this.cartName,StorageType.SESSION) : null;
         debugger;
         if (items != null && JSON != null) {
             try {
@@ -65,10 +66,15 @@ export class CartService {
 
     // save items to local storage
     saveItems() {
-        debugger;
-        if (localStorage != null && JSON != null) {
-            localStorage[this.cartName + '_items'] = JSON.stringify(this.items);
+        let persistenceConfig: PersistenceConfig;
+        persistenceConfig = {
+            type:StorageType.SESSION,
+            timeout: 1200000,
+            expireAfter:1200000,
+            oneUse: false
         }
+        //localStorage[this.userName + '_items'] = JSON.stringify(this.user);
+        this.persistenceService.set(this.cartName,JSON.stringify(this.items), persistenceConfig);
     }
 
     // adds an item to the cart

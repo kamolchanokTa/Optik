@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
+import { PersistenceService, StorageType, PersistenceConfig } from 'angular-persistence';
 
 export class UserObject {
     firstname: string;
@@ -34,14 +35,15 @@ export class UserService {
         creditcard: null
     }
 
-    constructor(private $http: HttpClient) {
+    constructor(private $http: HttpClient, private persistenceService: PersistenceService) {
         this.loadUser();
      }
 
     // load items from local storage
     loadUser() {
 
-        let item = localStorage != null ? localStorage[this.userName + '_items'] : null;
+        //let item = localStorage != null ? localStorage[this.userName + '_items'] : null;
+        let item =  this.persistenceService.get(this.userName,StorageType.SESSION) != null ? this.persistenceService.get(this.userName,StorageType.SESSION) : null;
         debugger;
         if (item != null && JSON != null) {
             try {
@@ -61,10 +63,15 @@ export class UserService {
 
     // save items to local storage
     saveUser() {
-        debugger;
-        if (localStorage != null && JSON != null) {
-            localStorage[this.userName + '_items'] = JSON.stringify(this.user);
+        let persistenceConfig: PersistenceConfig;
+        persistenceConfig = {
+            type:StorageType.SESSION,
+            timeout: 1200000,
+            expireAfter:1200000,
+            oneUse: false
         }
+        //localStorage[this.userName + '_items'] = JSON.stringify(this.user);
+        this.persistenceService.set(this.userName,JSON.stringify(this.user), persistenceConfig);
     }
 
     addItem(name,userid,address,creditcard) {
@@ -84,6 +91,7 @@ export class UserService {
         const getPackageSuccess = (response: any): Promise<responseObject> => {            
             return response || {};
         }
+        debugger;
 		let body = {
             email: email,
             password: password
