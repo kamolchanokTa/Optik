@@ -12,6 +12,8 @@ import { ProductCreationComponent } from './components/product-creation/product-
 import { ProductDetailComponent} from './components/product-detail/product-detail.component';
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
 import { ProductsViewComponent} from './components/products/products.component';
+import { LoadUserComponent} from './components/user-profile/user-profile.component';
+
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/product-overview', pathMatch: 'full' },
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     { path: 'product-detail', component: ProductDetailComponent },
     { path: 'cart-detail', component: CartDetailComponent },
     { path: 'top-header', component: TopHeaderComponent},
-    { path: 'products', component: ProductsViewComponent}
+    { path: 'products', component: ProductsViewComponent},
+    { path: 'user-profile', component: LoadUserComponent}
 ]
 
 @NgModule({
