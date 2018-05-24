@@ -9,12 +9,11 @@ import { CartService} from "../../services/cart-service";
 import * as _ from "lodash";
 
 @Component({
-    selector: "#po-table",
-    templateUrl: "./product-overview.component.html",
-    // styleUrls: ["./po-list.style.scss"]
+    selector: "#store",
+    templateUrl: "./products.component.html",
 })
 
-export class ProductOverviewComponent implements OnInit {
+export class ProductsViewComponent implements OnInit {
     // private fields
     productList: any[];
     loading: boolean;
@@ -40,14 +39,7 @@ export class ProductOverviewComponent implements OnInit {
             .then((result) => {
                 this.loading = false;
                 let count = 0; 
-                this.productList = _.filter(result.data, (item, idx) => {
-                    let productType = item.productType.toLowerCase();
-                    
-                    if (productType.includes('newcollection') && count < 5 ) {
-                        count++;
-                        return item;
-                    }
-                });
+                this.productList = result.data;
                 console.log(result);
             }, failToGetValueObjects);
                 // the first argument is a function which runs on success

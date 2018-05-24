@@ -10,6 +10,8 @@ import { ProductCreationComponent } from './components/product-creation/product-
 import { ProductDetailComponent} from './components/product-detail/product-detail.component';
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
 import { TopHeaderComponent} from './components/top-header/top-header.component';
+import { ProductsViewComponent } from './components/products/products.component';
+
 
 //import services
 import { ProductService } from './services/product.service';
@@ -31,7 +33,8 @@ export const componentList = [
     RegisterComponent,
     UpdateAddressComponent, 
     UpdateCreditComponent,
-    TopHeaderComponent
+    TopHeaderComponent,
+    ProductsViewComponent
 ];
 
 export const serviceList = [ProductService, UserService, LocalStorageService, CartService];
