@@ -1,27 +1,34 @@
+<top-header></top-header>
 
-<div id="register" >
-    <div [hidden]="!loading">
-        <loader medium=true></loader>
-    </div>
-    <notifier [messages]="notifyMessages"></notifier>
+<div id="register" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="main">
+                <div [hidden]="!loading">
+                    <loader medium=true></loader>
+                </div>
+                <notifier [messages]="notifyMessages"></notifier>
         <div class='my-2'>
             <h3 class='text-center'>Customer Information</h3>
             <hr/>
             <div>
-                <label class="block-left col-3 col-sm-5 ">First Name:</label>
-                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.firstname" maxlength="50" />
+                <label class="block-left col-10 col-md-8 text-right">First Name:
+                <span><input class="block-right" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.firstname" maxlength="50" /></span></label>
             </div>
             <div>
-                <label class="block-left col-3 col-sm-5">Last Name:</label>
-                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.lastname" maxlength="50" />
+                <label class="block-left col-10 col-md-8 text-right">Last Name:
+                    <span><input class="block-right" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.lastname" maxlength="50" /></span></label>
             </div>
             <div>
-                <label class="block-left col-3 col-sm-5">email:</label>
-                    <input class="block-right col-6" type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.email" maxlength="50" />
+                <label class="block-left col-10 col-md-8 text-right">email:
+                    <span><input class="block-right" type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.email" maxlength="50" /></span></label>
             </div>
             </div>
-            <div class="float-right mr-4">
+            <div class="text-right col-10 col-md-8 ">
                 <button class="primary-btn" (click)="registerObject()">Next</button>
                 <button class='main-btn' routerLink="/registeration">Cancel</button>
             </div>
+        </div>
+        </div>
+    </div>
 </div>

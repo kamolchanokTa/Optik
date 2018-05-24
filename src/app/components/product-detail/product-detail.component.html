@@ -2,12 +2,24 @@
     <top-header></top-header>
 </div>
 <div id="product-detail">
-    <h2>Product Detail</h2>
-    <label>Name: {{product.name}}</label>
-    <label>description: {{product.description}}</label>
-    <img [attr.src]="b64toBlob(product.image,'image/jpeg',512)">
-    <label>Price: {{product.price}}</label>
-    <label>Produc Type: {{product.productType}}</label>
-    <label>Number of Available product: {{product.availableproduct}}</label>
-    <button class="primary-btn" (click)="addToCart(product)" [disabled]="product.availableproduct < 1">Add to Cart</button>
+	<div class="container">
+		<div class="row py-5" style="padding-bottom:10px; padding-top:10px;">
+		    <div class='col-xs-4 col-4'>
+				<img class='img-thumbnail' [attr.src]="b64toBlob(product.image,'image/jpeg',512)">	    	
+		    </div>
+		    <div class="col-xs-5 col-8" style="border:3px solid gray;">
+			    <h2>Product Detail</h2>
+			    <h6 class='text-primary'>Name: {{product.name}}</h6>
+			    <h6 class="text-danger">Price: {{product.price}}</h6>
+			    <h6>Produc Type: {{product.productType}}</h6>
+			    <h6>Number of Available product: {{product.availableproduct}}</h6>
+			    <button class="primary-btn" (click)="addToCart(product)" [disabled]="product.availableproduct < 1">Add to Cart</button>
+			</div>
+			</div>
+			<div class="row my-5">
+			<div class='col-xs-9' style="width:100%;border-top:3px solid silver">
+			    <p>Description: {{product.description}}</p>
+			</div>
+	    </div>
+    </div>
 </div>
