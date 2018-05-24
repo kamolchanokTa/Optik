@@ -11,6 +11,8 @@ import { ProductDetailComponent} from './components/product-detail/product-detai
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
 import { TopHeaderComponent} from './components/top-header/top-header.component';
 import { OrderHistoryComponent} from './components/order-history/order-history.component';
+import { ProductsViewComponent } from './components/products/products.component';
+
 
 //import services
 import { ProductService } from './services/product.service';
@@ -33,7 +35,8 @@ export const componentList = [
     UpdateAddressComponent, 
     UpdateCreditComponent,
     TopHeaderComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    ProductsViewComponent
 ];
 
 export const serviceList = [ProductService, UserService, LocalStorageService, CartService];
