@@ -31,7 +31,6 @@ const appRoutes: Routes = [
     { path: 'top-header', component: TopHeaderComponent},
     { path: 'order-history', component: OrderHistoryComponent},
     { path: 'products', component: ProductsViewComponent},
-    { path: 'products', component: ProductsViewComponent},
     { path: 'user-profile', component: LoadUserComponent},
     { path: 'logout', component: LogoutComponent}
 ]

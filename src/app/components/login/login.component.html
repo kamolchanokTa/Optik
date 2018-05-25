@@ -1,12 +1,8 @@
-
-<div id="login" class="section">
-    <div class="container">
-        <div class="row">
-            <div class="main">
-                <div [hidden]="!loading">
-                    <loader medium=true></loader>
-                </div>
-                <notifier [messages]="notifyMessages"></notifier>
+<div id="login" >
+    <div [hidden]="!loading">
+        <loader medium=true></loader>
+    </div>
+    <notifier [messages]="notifyMessages"></notifier>
 			<form  name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>     
 		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
 			  <hr class="colorgraph"><br>
@@ -25,7 +21,4 @@
 					<a [routerLink]="['/registeration']" class="btn btn-link">Register</a>
 				</div>	
 			</form>	
-			</div>
-		</div>
-	</div>
 </div>
