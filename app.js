@@ -19,6 +19,10 @@ app.post('/api/user/login', function (req, res) {
     userServ.default.login(req, res);
 });
 
+app.get('/api/user/logout', function (req, res) {
+    userServ.default.logout(req, res);
+});
+
 app.post('/api/user/save', function (req, res) {
     userServ.default.create(req, res);
 });

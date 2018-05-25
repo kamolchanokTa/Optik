@@ -100,7 +100,20 @@ export class UserService {
             password: password,
             sessionKey: sessionKey
         };
+        
 		return this.$http.post(this.baseUri + `/user/login`, body)
+            .toPromise()
+            .then(getPackageSuccess)
+            .catch(this.errorHandler);
+    }
+
+    logout = () => {
+        const getPackageSuccess = (response: any): Promise<any> => { 
+            console.log(response);
+            return response || {};
+        }
+        
+        return this.$http.get(this.baseUri + `/user/logout`)
             .toPromise()
             .then(getPackageSuccess)
             .catch(this.errorHandler);
