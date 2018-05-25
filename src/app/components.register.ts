@@ -12,6 +12,7 @@ import { CartDetailComponent} from './components/cart-detail/cart-detail.compone
 import { TopHeaderComponent} from './components/top-header/top-header.component';
 import { ProductsViewComponent } from './components/products/products.component';
 import { LoadUserComponent } from './components/user-profile/user-profile.component';
+import { LogoutComponent} from './components/logout/logout.component';
 
 //import services
 import { ProductService } from './services/product.service';
@@ -35,7 +36,8 @@ export const componentList = [
     UpdateCreditComponent,
     TopHeaderComponent,
     ProductsViewComponent,
-    LoadUserComponent
+    LoadUserComponent,
+    LogoutComponent
 ];
 
 export const serviceList = [ProductService, UserService, LocalStorageService, CartService];

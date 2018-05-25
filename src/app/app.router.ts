@@ -13,6 +13,7 @@ import { ProductDetailComponent} from './components/product-detail/product-detai
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
 import { ProductsViewComponent} from './components/products/products.component';
 import { LoadUserComponent} from './components/user-profile/user-profile.component';
+import { LogoutComponent} from './components/logout/logout.component';
 
 
 const appRoutes: Routes = [
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     { path: 'cart-detail', component: CartDetailComponent },
     { path: 'top-header', component: TopHeaderComponent},
     { path: 'products', component: ProductsViewComponent},
-    { path: 'user-profile', component: LoadUserComponent}
+    { path: 'user-profile', component: LoadUserComponent},
+    { path: 'logout', component: LogoutComponent}
 ]
 
 @NgModule({

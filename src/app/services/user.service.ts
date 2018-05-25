@@ -81,14 +81,28 @@ export class UserService {
     }
 	
 	login = (email: string, password: string) => {
-        const getPackageSuccess = (response: any): Promise<responseObject> => {            
+        const getPackageSuccess = (response: any): Promise<any> => { 
+            console.log(response);
             return response || {};
         }
 		let body = {
             email: email,
             password: password
         };
+        
 		return this.$http.post(this.baseUri + `/user/login`, body)
+            .toPromise()
+            .then(getPackageSuccess)
+            .catch(this.errorHandler);
+    }
+
+    logout = () => {
+        const getPackageSuccess = (response: any): Promise<any> => { 
+            console.log(response);
+            return response || {};
+        }
+        
+        return this.$http.get(this.baseUri + `/user/logout`)
             .toPromise()
             .then(getPackageSuccess)
             .catch(this.errorHandler);

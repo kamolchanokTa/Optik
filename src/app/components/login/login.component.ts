@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
             .then((result) => {
                 this.loading = true;
                 console.log(result);
-                console.log(this.persistenceService.set(result.id, result, {type: StorageType.SESSION}));
+                this.persistenceService.set('userid', result.id, {type: StorageType.SESSION});
                 this.userSvc.addItem(result.name,result.id,result.address,result.creditcardtype);
                 this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.email +" as username"  });
             }, failToLoginObjects);
