@@ -1,49 +1,43 @@
 <div id="update-address" >
-   <div class="container">
-        <div class="row">
-            <div class="main">
-                <div [hidden]="!loading">
-                    <loader medium=true></loader>
-                </div>
-                <notifier [messages]="notifyMessages"></notifier>
-		<div class="wrapper">
-            <h3 class='text-center'>Update your address!</h3>
-            <hr/>
-			<div>
-                <label class="block-left col-10 col-md-8 text-right">Address:
-                
-                    <span><input class="block-right" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.address" maxlength="50" /></span></label>
-                
-            </div>
-            <div>
-                <label class="block-left col-10 col-md-8 text-right">City:
-                
-                    <span><input class="block-right " type="text" placeholder="maximum 50 characters" [(ngModel)]="model.city" maxlength="50" /></span></label>
-                
-            </div>
-            <div>
-                <label class="block-left col-10 col-md-8 text-right">Zip Code
-                
-                    <span><input class="block-right " type="text" placeholder="maximum 50 characters"  [(ngModel)]="model.zipcode" maxlength="50" /></span></label>
-                
-            </div>
-            <div>
-                <label class="block-left col-10 col-md-8 text-right">Country:
-                
-                    <span><select class="" [(ngModel)] = "countrySelected" style="width:178px"> 
-                        <option disabled selected value> -- select country -- </option>
-                        <option *ngFor="let country of countryList" [value]="country.name">
-                            {{country.name}}
-                        </option>
-                    </select></span></label>
-            </div>
-            <div class="col-10 col-md-8 text-right">
-                    <button class="primary-btn" (click)="updateAddressObject()">Next</button>
-                    <button class='main-btn' routerLink="/registeration">Cancel</button>
-            </div>
-				
-		</div>
+    <div [hidden]="!loading">
+        <loader medium=true></loader>
     </div>
-    </div>
+    <notifier [messages]="notifyMessages"></notifier>
+    <div class="wrapper">
+        <h3 class='text-center'>Update your address!</h3>
+        <hr/>
+        <div>
+            <label class="block-left col-6 col-md-5">Address:</label>
+            
+                <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.address" maxlength="50" />
+            
+        </div>
+        <div>
+            <label class="block-left col-6 col-md-5">City:</label>
+            
+                <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.city" maxlength="50" />
+            
+        </div>
+        <div>
+            <label class="block-left col-6 col-md-5">Zip Code</label>
+            
+                <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters"  [(ngModel)]="model.zipcode" maxlength="50" />
+            
+        </div>
+        <div>
+            <label class="block-left col-6 col-md-5">Country:</label>
+            
+                <select class="col-6 col-md-5" [(ngModel)] = "countrySelected"> 
+                    <option disabled selected value> -- select country -- </option>
+                    <option *ngFor="let country of countryList" [value]="country.name">
+                        {{country.name}}
+                    </option>
+                </select>
+        </div>
+        <div class="col-6 col-md-5">
+                <button class="primary-btn" (click)="updateAddressObject()">Next</button>
+                <button class='main-btn' routerLink="/registeration">Cancel</button>
+        </div>
+            
     </div>
 </div>

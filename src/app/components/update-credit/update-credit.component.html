@@ -1,39 +1,32 @@
-
 <div id="update-credit" >
-    <div class="container">
-        <div class="row">
-            <div class="main">
-                <div [hidden]="!loading">
-                    <loader medium=true></loader>
-                </div>
-                <notifier [messages]="notifyMessages"></notifier>
-
-            <h3 class='text-center'>Update your credit!</h3>
-            <hr/>
-            <div >
-                <label class="block-left col-10 col-md-8 text-right">Credit Card Number
-                
-                    <span><input class="block-right" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.cardnumber" maxlength="50" /></span></label>
-                
-            </div>
-            <div >
-                <label class="block-left col-10 col-md-8 text-right">Credit Card Expired Date:
-                    <span><input id="month" type="month" [(ngModel)]="model.exp" maxlength="50" /> </span></label>
-            </div>
-
-            <div>
-                <label class="block-left col-10 col-md-8 text-right">Credit Card Type:
-                	<span ><select [(ngModel)] = "creditTypeSelected" style="width:178px;">
-					  <option value="visa">visa</option>
-					  <option value="master">master</option>
-					</select></span></label>
-            </div>
-            <div class="col-10 col-md-8 text-right">
-                
-                <button class="primary-btn" (click)="updateCreditObject()">Next</button>
-                <button class='main-btn' routerLink="/registeration">Cancel</button>
-            </div>
-        </div>
+    <div [hidden]="!loading">
+        <loader medium=true></loader>
     </div>
-</div>
+    <notifier [messages]="notifyMessages"></notifier>
+
+    <h3 class='text-center'>Update your credit!</h3>
+    <hr/>
+    <div>
+        <label class="block-left col-6 col-md-5">Credit Card Number</label>
+        
+            <input class="block-right col-6 col-md-5" type="text" placeholder="maximum 50 characters" [(ngModel)]="model.cardnumber" maxlength="50" />
+        
+    </div>
+    <div>
+        <label class="block-left col-6 col-md-5">Credit Card Expired Date:</label>
+            <input class="col-6 col-md-5" id="month" type="month" [(ngModel)]="model.exp" maxlength="50" /> 
+    </div>
+
+    <div>
+        <label class="block-left col-6 col-md-5">Credit Card Type:</label>
+            <select class="col-6 col-md-5" [(ngModel)] = "creditTypeSelected">
+                <option value="visa">visa</option>
+                <option value="master">master</option>
+            </select>
+    </div>
+    <div class="col-6 col-md-5">
+        
+        <button class="primary-btn" (click)="updateCreditObject()">Next</button>
+        <button class='main-btn' routerLink="/registeration">Cancel</button>
+    </div>
 </div>

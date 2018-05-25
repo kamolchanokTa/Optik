@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
         private userSvc: UserService) { }
  
     ngOnInit() {
-        this.loading = true;
+        this.loading = false;
         this.notifyMessages = [];
         // reset register status
         // don't know how

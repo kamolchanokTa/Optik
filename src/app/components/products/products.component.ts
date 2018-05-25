@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { NgModel } from "@angular/forms";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';  
 
@@ -17,6 +17,7 @@ export class ProductsViewComponent implements OnInit {
     // private fields
     productList: any[];
     loading: boolean;
+    type: string = this.route.snapshot.params['type'];
 
     ngOnInit() {
         this.loading = true;
@@ -26,6 +27,7 @@ export class ProductsViewComponent implements OnInit {
 
     constructor(private router: Router,
         private productSvc: ProductService,
+        private route: ActivatedRoute,
         private sanitizer: DomSanitizer,
         public cartService: CartService){
     }
@@ -39,8 +41,18 @@ export class ProductsViewComponent implements OnInit {
             .then((result) => {
                 this.loading = false;
                 let count = 0; 
-                this.productList = result.data;
-                console.log(result);
+                if(this.type) {
+                    this.productList = _.filter(result.data, (item, idx) => {
+                        let productType = item.productType.toLowerCase();
+                        
+                        if (productType.includes(this.type.toLowerCase())  ) {
+                            return item;
+                        }
+                    });
+                }
+                else {
+                    this.productList = result.data;
+                }
             }, failToGetValueObjects);
                 // the first argument is a function which runs on success
                 

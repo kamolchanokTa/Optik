@@ -70,8 +70,9 @@
 								<div><label>{{userService.user.name}}</label></div>
 							</div>
                             <ul class="custom-menu">
-                                <li [hidden]="!isUserExist()"><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                                <li [hidden]="!isUserExist()"><a href="/order-history"><i class="fa fa-check"></i>My Order</a></li>
+                                <li [hidden]="!isUserExist()"><a href="/user-profile"><i class="fa fa-user-o"></i> My Account</a></li>
+								<li [hidden]="!isUserExist()"><a href="/order-history"><i class="fa fa-check"></i>My Order</a></li>
+								<li [hidden]="!isUserExist()"><a href="/logout"><i class="fa fa-unlock"></i>Log out</a></li>
                             </ul>
                         </li>
                         <!-- /Account -->
@@ -132,10 +133,10 @@
 				<div class="category-nav show-on-click">
 						<span class="category-header">Categories <i class="fa fa-list"></i></span>
 						<ul class="category-list">
-							<li><a href="#">New Collection</a></li>
-							<li><a href="#">Sunglasses</a></li>
-							<li><a href="#">Contract lens</a></li>
-							<li><a href="#">View All</a></li>
+							<li><a href="/products;type=newcollection">New Collection</a></li>
+							<li><a href="/products;type=sunglasses">Sunglasses</a></li>
+							<li><a href="/products;type=contactlens">Contact lens</a></li>
+							<li><a href="/products">View All</a></li>
 						</ul>
 					</div>
 					<!-- /category nav -->
@@ -143,15 +144,15 @@
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Shop</a></li>
+						<li><a href="/product-overview">Home</a></li>
+						<li><a href="/products">Shop</a></li>
 						<li class="dropdown default-dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 Pages <i class="fa fa-caret-down"></i>
                             </a>
 							<ul class="custom-menu">
 								<li><a href="/product-overview">Home</a></li>
-								<li><a href="/product-overview">Products</a></li>
+								<li><a href="/products">Products</a></li>
 								<li><a href="/cart-detail">Checkout</a></li>
 							</ul>
 						</li>

@@ -39,12 +39,10 @@ export class ProductOverviewComponent implements OnInit {
         this.productSvc.getProducts()
             .then((result) => {
                 this.loading = false;
-                let count = 0; 
                 this.productList = _.filter(result.data, (item, idx) => {
                     let productType = item.productType.toLowerCase();
                     
-                    if (productType.includes('newcollection') && count < 5 ) {
-                        count++;
+                    if (productType.includes('newcollection')  ) {
                         return item;
                     }
                 });
