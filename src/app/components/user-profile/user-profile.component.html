@@ -13,9 +13,16 @@
                     <div class="title">
                         <h1>{{ userObj.name }}</h1>
                     </div>
-                    <h5 class='text-danger'>Registeration User ID: <span>{{ userObj.userid }}</span></h5>
-					  <div>Address: <span>{{ userObj.address }}</span></div>
-					  <div>Creditcard: <span>{{ userObj.creditcard }}</span></div>
+                    <h5 class='text-danger'>Registeration User ID: <span>{{ userObj.id }}</span></h5>
+					  <div>Email: <span>{{ userObj.email }}</span></div>
+                      <div>Address: <span>{{ userObj.address }}</span></div>
+                      <div>City: <span>{{ userObj.city }}</span></div>
+                      <div>Zipcode: <span>{{ userObj.zipcode }}</span></div>
+                      <div>Country: <span>{{ userObj.country }}</span></div>
+                      <div ng-if="userObj.creditcardnumber">
+    					  <div>Creditcard number: <span>{{ userObj.creditcardnumber }}</span></div>
+                          <div>Creditcard type: <span>{{ userObj.creditcardtype }}</span></div>
+                      </div>
                 </div>
                 <div class="bottom">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
