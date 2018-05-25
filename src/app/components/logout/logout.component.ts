@@ -5,6 +5,11 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 import { UserService, UserObject} from "../../services/user.service";
 import { INotifyMessage } from "../../custom-elements/notifier/notifier.component";
 
+@Component({
+    selector: "#logout",
+    templateUrl: "./logout.component.html"
+})
+
 export class LogoutComponent implements OnInit {
     loading = false;
     returnUrl: string;
