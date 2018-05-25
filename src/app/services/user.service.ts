@@ -32,7 +32,8 @@ export class UserService {
         name: null,
         userid: null,
         address: null,
-        creditcard: null
+        creditcard: null,
+        sessionKey: null
     }
 
     constructor(private $http: HttpClient, private persistenceService: PersistenceService) {
@@ -52,7 +53,8 @@ export class UserService {
                     name: item.name,
                     userid: item.userid,
                     address: item.address,
-                    creditcard:item.creditcard
+                    creditcard:item.creditcard,
+                    sessionKey: item.sessionKey
                 }
             } catch (err) {
                 // ignore errors while loading...
@@ -74,27 +76,29 @@ export class UserService {
         this.persistenceService.set(this.userName,JSON.stringify(this.user), persistenceConfig);
     }
 
-    addItem(name,userid,address,creditcard) {
+    addItem(name,userid,address,creditcard,sessionKey) {
         const _return = true;
         this.user = {
             name:name,
             userid: userid,
             address:address,
-            creditcard:creditcard
+            creditcard:creditcard,
+            sessionKey: sessionKey
         }
         // save changes
         this.saveUser();
     return _return;
     }
 	
-	login = (email: string, password: string) => {
+	login = (email: string, password: string, sessionKey: string) => {
         const getPackageSuccess = (response: any): Promise<responseObject> => {            
             return response || {};
         }
         debugger;
 		let body = {
             email: email,
-            password: password
+            password: password,
+            sessionKey: sessionKey
         };
 		return this.$http.post(this.baseUri + `/user/login`, body)
             .toPromise()

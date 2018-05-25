@@ -53,5 +53,9 @@ app.post('/api/product/save',function(req, res){
 app.post('/api/cart/save',function(req, res){
     cartServ.default.saveCart(req, res);
 });
+
+app.post('/api/cart/get/user',function(req, res){
+    cartServ.default.getCartsByCustomer(req, res);
+});
 module.exports = app;
 

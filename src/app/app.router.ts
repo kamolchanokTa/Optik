@@ -11,6 +11,7 @@ import { TopHeaderComponent} from './components/top-header/top-header.component'
 import { ProductCreationComponent } from './components/product-creation/product-creation.component';
 import { ProductDetailComponent} from './components/product-detail/product-detail.component';
 import { CartDetailComponent} from './components/cart-detail/cart-detail.component';
+import { OrderHistoryComponent} from './components/order-history/order-history.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/product-overview', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     { path: 'product-create', component: ProductCreationComponent },
     { path: 'product-detail', component: ProductDetailComponent },
     { path: 'cart-detail', component: CartDetailComponent },
-    { path: 'top-header', component: TopHeaderComponent}
+    { path: 'top-header', component: TopHeaderComponent},
+    { path: 'order-history', component: OrderHistoryComponent}
 ]
 
 @NgModule({

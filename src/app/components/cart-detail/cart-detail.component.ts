@@ -122,7 +122,8 @@ export class CartDetailComponent implements OnInit {
             "totalprice": this.cartService.getTotalPrice(null),
             "deliverymethod": "normal",
             "orderdetails":orderdetails,
-            "orderdate": Date.now.toString()
+            "orderdate": Date.now.toString(),
+            "sessionKey": this.userService.user.sessionKey
             
         }
         const failToSaveObjects = (error: any) => {
