@@ -2,12 +2,21 @@
     <top-header></top-header>
 </div>
 <div id="product-detail">
-    <h2>Product Detail</h2>
-    <label>Name: {{product.name}}</label>
-    <label>description: {{product.description}}</label>
-    <img [attr.src]="b64toBlob(product.image,'image/jpeg',512)">
-    <label>Price: {{product.price}}</label>
-    <label>Produc Type: {{product.productType}}</label>
-    <label>Number of Available product: {{product.availableproduct}}</label>
-    <button class="primary-btn" (click)="addToCart(product)" [disabled]="product.availableproduct < 1">Add to Cart</button>
+	<div class="container">
+
+		<h2 >Product Detail</h2>
+		<div class="row">
+		    <div class='col-md-6'>
+                <img style='height: 100%; width: 100%; object-fit: contain' [attr.src]="b64toBlob(product.image,'image/jpeg',512)" alt="">	    
+		    </div>
+		    <div class="col-md-4">
+			    <h2 style='margin-top:10px; margin-bottom:10px'>Name: {{product.name}}</h2>
+			    <h3 >Price: € {{product.price}}</h3>
+			    <p><label style='color: #30323A;'>Produc Type</label>: {{product.productType}}</p>
+			    <p><label style='color: #30323A;'>Number of Available product</label>: {{product.availableproduct}}</p>
+			    <p><label style='color: #30323A;'>Description</label>: {{product.description}}</p>
+			    <button class="primary-btn" (click)="addToCart(product)" [disabled]="product.availableproduct < 1">Add to Cart</button>
+			</div>
+	    </div>
+    </div>
 </div>

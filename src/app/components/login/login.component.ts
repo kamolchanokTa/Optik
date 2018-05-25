@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgModel } from "@angular/forms";
-
 import { UserService, UserObject} from "../../services/user.service";
 import { INotifyMessage } from "../../custom-elements/notifier/notifier.component";
 import * as _ from "lodash";
@@ -10,8 +9,7 @@ import * as md5 from 'md5';
 
 @Component({
     selector: "#login",
-    templateUrl: "./login.component.html",
-    styleUrls: ["./login.style.css"]
+    templateUrl: "./login.component.html"
 })
 
 export class LoginComponent implements OnInit {
@@ -25,7 +23,7 @@ export class LoginComponent implements OnInit {
         private userSvc: UserService) { }
  
     ngOnInit() {
-        this.loading = true;
+        this.loading = false;
         this.notifyMessages = [];
         // reset login status
         // don't know how

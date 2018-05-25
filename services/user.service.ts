@@ -134,6 +134,23 @@ class UserService {
                 res.send(error.code || 500, error.message || "Internal server error");
             });
     }
+
+    logout =  (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/user/logout';
+        
+        // const body = { };
+        const requestOpt = this.http.createOption(uri, {},req.body.sessionKey);
+        const getvalueSuccess = (data: any) => {
+            res.send(200, data);
+        };
+
+        this.http.getAsync(requestOpt)
+            .then(getvalueSuccess)
+            .catch((error) => {
+                this.errorHandler(error);
+                res.send(error.code || 500, error.message || "Internal server error");
+            });
+    }
 }
 
 export default new UserService();
