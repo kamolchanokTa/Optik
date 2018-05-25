@@ -16,7 +16,7 @@ class ProductService {
     getListOfProductOverview = (req: any, res: any) => {
         const uri = this.baseEndpoint + '/productoverview';
         const body = { };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body, null);
 
         const getPermissionObjectSuccess = (data: any) => {
             res.send(200, data);
@@ -33,7 +33,7 @@ class ProductService {
     getProducts =  (req: any, res: any) => {
         const uri = this.baseEndpoint + '/products';
         const body = { };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body, null);
         const getvalueSuccess = (data: any) => {
             res.send(200, data);
         };
@@ -51,7 +51,7 @@ class ProductService {
         const uri = this.baseEndpoint + '/product?id='+req.body.id;
         
         // const body = { };
-        const requestOpt = this.http.createOption(uri, {});
+        const requestOpt = this.http.createOption(uri, {}, null);
         const getvalueSuccess = (data: any) => {
             res.send(200, data);
         };
@@ -74,7 +74,7 @@ class ProductService {
             "price":req.body.price,
             "description": req.body.description
         };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 
         const saveProductSuccess = (data: any) => {
             res.send(200, data);

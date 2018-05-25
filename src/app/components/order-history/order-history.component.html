@@ -1,0 +1,59 @@
+<div>
+    <top-header></top-header>
+</div>
+<div id="Order-history"class="section">
+    <notifier [messages]="notifyMessages"></notifier>
+    <div class="container" [hidden]="!isUserCreated()">
+        <div class="row">
+                <form id="checkout-form" class="clearfix">
+                    <div class="col-md-12">
+                        <div class="order-summary clearfix">
+                            <div class="section-title">
+                                <h3 class="title">Order History</h3>
+                            </div>
+                            <div *ngFor="let cart of (carts)" [hidden]="(carts) < 1">
+                                <label>Order Creation: {{ cart.orderDate}}</label>
+                                <table class="shopping-cart-table table" >
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-right"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of (cart.orderdetails)">
+                                            <td class="thumb"><img [attr.src]="b64toBlob(item.product.image,'image/jpeg',512)" alt=""></td>
+                                            <td class="details">
+                                                <a href="#">{{item.product.name}}</a>
+                                            </td>
+                                            <td class="total text-center"><strong class="primary-color">€ {{item.product.price}}</strong></td>
+                                            <td class="qty text-center">
+                                                <div class="input-append">
+                                                    <label>{{item.amount}}</label>
+                                                </div>
+                                            </td>
+                                            <td class="total text-center"><strong class="primary-color">€ {{item.product.price * item.amount }}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="empty" colspan="3"></th>
+                                            <th>TOTAL</th>
+                                            <th colspan="2" class="total">€ {{ cart.totalPrice }}</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+        </div>
+       
+    </div>
+</div>
+            

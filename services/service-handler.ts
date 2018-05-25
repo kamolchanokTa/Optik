@@ -16,16 +16,17 @@ export class ServiceHandler {
     });
   };
 
-  createRequestHeader = (): request.Headers => {
+  createRequestHeader = (sessionKey: string): request.Headers => {
     return {
       "Accept": "application/json",
       "Content-Type": "application/json",
       "appId": this.appId,
+      "sessionKey": sessionKey
     };
   }
 
-  createOption = (uri: string,payload: any): request.UriOptions => {
-    const headers = this.createRequestHeader();
+  createOption = (uri: string,payload: any,sessionKey: any): request.UriOptions => {
+    const headers = this.createRequestHeader(sessionKey);
     let requestOption = {
       headers,
       uri

@@ -54,7 +54,7 @@ export class RegisterationComponent implements OnInit {
             city:this.city,
             country: this.countrySelected,
             zipcode: this.zipcode,
-            userType: "1",
+            userType: "2",
             dob: this.dob
         }
         const failToSaveObjects = (error: any) => {

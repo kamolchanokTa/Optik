@@ -39,13 +39,17 @@ export class LoginComponent implements OnInit {
 		    this.loading = false;
 		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-		
-        this.userSvc.login(this.model.email, md5(this.model.password))
+        let sessionKey = null;
+		if(this.userSvc.user.sessionKey != null){
+            sessionKey = this.userSvc.user.sessionKey;
+        }
+        this.userSvc.login(this.model.email, md5(this.model.password), sessionKey)
             .then((result) => {
+                debugger;
                 if(result.data){
                     this.loading = false;
-                    this.userSvc.addItem(result.data.name,result.data.id,result.data.address,result.data.creditcardtype);
-                    this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.data.email +" as username"  });
+                    this.userSvc.addItem(result.data.user.name,result.data.user.id,result.data.user.address,result.data.user.creditcardtype, result.data.sessionKey);
+                    this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.data.user.email +" as username"  });
                 }
                 else {
                     this.loading = false;

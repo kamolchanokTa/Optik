@@ -28,7 +28,7 @@ class UserService {
             "password": req.body.password
         };
 
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 
         const createUserSuccess = (data: any) => {
             res.send(200, data);
@@ -51,7 +51,7 @@ class UserService {
             "lastname": req.body.lastname,
             "userType": req.body.userType,
         };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 
         const createUserSuccess = (data: any) => {
             res.send(200, data);
@@ -74,7 +74,7 @@ class UserService {
             "country":req.body.country,
             "zipcode": req.body.zipcode,
         };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 
         const updateSuccess = (data: any) => {
             res.send(200, data);
@@ -97,7 +97,7 @@ class UserService {
             "cardexpmonth": req.body.cardexpmonth,
             "cardexpyear":req.body.cardexpyear
         };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 
         const updateSuccess = (data: any) => {
             res.send(200, data);
@@ -121,7 +121,7 @@ class UserService {
             "email": req.body.email,
             "password": req.body.password,
         };
-        const requestOpt = this.http.createOption(uri, body);
+        const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 
         const loginUserSuccess = (data: any) => {
             res.send(200, data);
