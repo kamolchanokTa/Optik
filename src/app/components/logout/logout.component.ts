@@ -27,15 +27,7 @@ export class LogoutComponent implements OnInit {
     }
 	
 	logoutObject(){
-		const failToLogoutObjects = (error: any) => {
-		    this.loading = false;
-		    console.log("logout failure...");
-		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
-        };
-		this.userSvc.logout()
-            .then((result) => {
-                console.log(result);
-                this.router.navigate(['']);
-            }, failToLogoutObjects);
+		this.userSvc.clearItems();
+        this.router.navigate(["/product-overview"]);
 	}
 }

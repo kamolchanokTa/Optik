@@ -199,6 +199,18 @@ export class UserService {
             .catch(this.errorHandler);
     }
 
+    clearItems() {
+        this.user = {
+            name: null,
+            userid: null,
+            address: null,
+            creditcard: null,
+            sessionKey: null
+        }
+        this.saveUser()
+        this.persistenceService.remove(this.userName,StorageType.SESSION);
+    }
+
     private errorHandler = (error: any): Promise<any> =>{
         let errMsg: string;
         errMsg = error.message ? error.message : error.text();

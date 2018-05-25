@@ -14,23 +14,25 @@
                         <hr/>
                         <div>
                             <label class="block-left col-3 col-sm-5 ">First Name:</label>
-                            <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="firstname" maxlength="50" />
+                            <input class="block-right col-6" type="text" placeholder="first name" class="input-width" [(ngModel)]="firstname" maxlength="50" required/>
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">Last Name:</label>
-                                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="lastname" maxlength="50" />
+                                <input class="block-right col-6" type="text" placeholder="last name" class="input-width" [(ngModel)]="lastname" maxlength="50" required/>
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">email:</label>
-                                <input class="block-right col-6" type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="email" maxlength="50" />
+                                <input class="block-right col-6" type="email" placeholder="xxx@xxx.com" class="input-width" [(ngModel)]="email" maxlength="50" required/>
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">password:</label>
-                                <input class="block-right col-6" type="password" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="password" maxlength="50" />
+                            <input class="block-right col-6" type="password" placeholder="password" class="input-width" [(ngModel)]="password" maxlength="50" required/>
+                            <div *ngIf="password != confirmedpassword"></div>
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">Confirm password:</label>
-                                <input class="block-right col-6" type="password" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="confirmedpassword" maxlength="50" />
+                            <input class="block-right col-6" type="password" placeholder="password" class="input-width" [(ngModel)]="confirmedpassword" maxlength="50" required/>
+                            <div *ngIf="password != confirmedpassword" class="invalid"> Mismatch password</div>
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">Date of birth:</label>
@@ -41,19 +43,19 @@
                         <div>
                             <label class="block-left col-3 col-sm-5">Address:</label>
                             
-                                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="address" maxlength="50" />
+                                <input class="block-right col-6" type="text" placeholder="address" class="input-width" [(ngModel)]="address" maxlength="50" />
                             
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">City:</label>
                             
-                                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="city" maxlength="50" />
+                                <input class="block-right col-6" type="text" placeholder="city" class="input-width" [(ngModel)]="city" maxlength="50" />
                             
                         </div>
                         <div>
                             <label class="block-left col-3 col-sm-5">Zip Code</label>
                             
-                                <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="zipcode" maxlength="50" />
+                                <input class="block-right col-6" type="text" placeholder="zip code" class="input-width" [(ngModel)]="zipcode" maxlength="50" />
                             
                         </div>
                         <div>

@@ -73,7 +73,6 @@ export class CartService {
             expireAfter:1200000,
             oneUse: false
         }
-        //localStorage[this.userName + '_items'] = JSON.stringify(this.user);
         this.persistenceService.set(this.cartName,JSON.stringify(this.items), persistenceConfig);
     }
 
@@ -164,7 +163,7 @@ export class CartService {
     clearItems() {
         this.items = [];
         this.saveItems();
-        localStorage.removeItem(this.cartName + '_items');
+        this.persistenceService.remove(this.cartName,StorageType.SESSION);
     }
 
     getOrdersByCustomeId(user: any){
