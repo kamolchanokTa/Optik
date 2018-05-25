@@ -9,8 +9,7 @@ import * as md5 from 'md5';
 
 @Component({
     selector: "#login",
-    templateUrl: "./login.component.html",
-    styleUrls: ["./login.style.css"]
+    templateUrl: "./login.component.html"
 })
 
 export class LoginComponent implements OnInit {
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
         private userSvc: UserService) { }
  
     ngOnInit() {
-        this.loading = true;
+        this.loading = false;
         this.notifyMessages = [];
         // reset login status
         // don't know how

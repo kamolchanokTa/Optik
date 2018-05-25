@@ -139,7 +139,7 @@ class UserService {
         const uri = this.baseEndpoint + '/user/logout';
         
         // const body = { };
-        const requestOpt = this.http.createOption(uri, {});
+        const requestOpt = this.http.createOption(uri, {},req.body.sessionKey);
         const getvalueSuccess = (data: any) => {
             res.send(200, data);
         };
