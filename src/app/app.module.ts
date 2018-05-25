@@ -3,6 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteModule } from './app.router';
+import { PersistenceModule } from 'angular-persistence';
 
 import { AppComponent } from './app.component';
 import { componentList, serviceList, bootstrap } from './components.register';
@@ -17,7 +18,8 @@ import { CustomElementModule } from './custom-elements/custom.element.module';
     FormsModule,
     HttpClientModule,
     RouteModule,
-    CustomElementModule
+    CustomElementModule,
+    PersistenceModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [serviceList],
