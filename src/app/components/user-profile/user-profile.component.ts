@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgModel } from "@angular/forms";
-import { PersistenceService, StorageType } from 'angular-persistence';
 import { UserService, UserObject} from "../../services/user.service";
 import { INotifyMessage } from "../../custom-elements/notifier/notifier.component";
 import * as _ from "lodash";
@@ -23,8 +22,7 @@ export class LoadUserComponent implements OnInit {
 	
     constructor(
         private router: Router,
-        private userSvc: UserService,
-        private persistenceService: PersistenceService) { }
+        private userSvc: UserService) { }
  
     ngOnInit() {
         this.loading = true;
@@ -39,6 +37,5 @@ export class LoadUserComponent implements OnInit {
 		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
 		this.userObj = this.userSvc.loadUser();
-        this.userObj = this.persistenceService.get(this.userObj.userid, StorageType.SESSION));
 	}
 }
