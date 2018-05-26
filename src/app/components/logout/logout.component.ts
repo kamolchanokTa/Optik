@@ -5,6 +5,12 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 import { UserService, UserObject} from "../../services/user.service";
 import { INotifyMessage } from "../../custom-elements/notifier/notifier.component";
 
+@Component({
+     selector: "#logout",
+     templateUrl: "./logout.component.html",
+    //styleUrls: ["./login.style.css"]
+})
+
 export class LogoutComponent implements OnInit {
     loading = false;
     returnUrl: string;
@@ -27,10 +33,11 @@ export class LogoutComponent implements OnInit {
 		    console.log("logout failure...");
 		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-		this.userSvc.logout()
-            .then((result) => {
-                console.log(result);
-                this.router.navigate(['']);
-            }, failToLogoutObjects);
+        if(this.userSvc.loadUser != null){
+            console.log("loadUser is not null...");
+            this.userSvc.removeUser();    
+        }
+        this.router.navigate(['']);
+
 	}
 }

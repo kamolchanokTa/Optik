@@ -79,6 +79,20 @@ export class UserService {
         this.saveUser();
     return _return;
     }
+
+    removeUser() {
+        const _return = true;
+        let item = localStorage != null ? localStorage[this.userName + '_items'] : null;
+
+        if (item != null){
+            localStorage.removeItem(this.userName + '_items');
+        }
+        else{
+            //
+        }
+
+        return _return;
+    }
 	
 	login = (email: string, password: string) => {
         const getPackageSuccess = (response: any): Promise<any> => { 
@@ -96,17 +110,17 @@ export class UserService {
             .catch(this.errorHandler);
     }
 
-    logout = () => {
-        const getPackageSuccess = (response: any): Promise<any> => { 
-            console.log(response);
-            return response || {};
-        }
+    // logout = () => {
+    //     const getPackageSuccess = (response: any): Promise<any> => { 
+    //         console.log(response);
+    //         return response || {};
+    //     }
         
-        return this.$http.get(this.baseUri + `/user/logout`)
-            .toPromise()
-            .then(getPackageSuccess)
-            .catch(this.errorHandler);
-    }
+    //     return this.$http.get(this.baseUri + `/user/logout`)
+    //         .toPromise()
+    //         .then(getPackageSuccess)
+    //         .catch(this.errorHandler);
+    // }
 
     registerCustomer = (firstname: string, lastname: string, email:string) => {
         const registerUserObjectSuccess = (response: any): Promise<responseObject> => {            

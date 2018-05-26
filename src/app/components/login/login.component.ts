@@ -10,7 +10,7 @@ import * as md5 from 'md5';
 @Component({
     selector: "#login",
     templateUrl: "./login.component.html",
-    styleUrls: ["./login.style.css"]
+    //styleUrls: ["./login.style.css"]
 })
 
 export class LoginComponent implements OnInit {
