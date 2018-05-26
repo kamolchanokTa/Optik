@@ -107,17 +107,17 @@ export class UserService {
             .catch(this.errorHandler);
     }
 
-    logout = () => {
-        const getPackageSuccess = (response: any): Promise<any> => { 
-            console.log(response);
-            return response || {};
-        }
+    // logout = () => {
+    //     const getPackageSuccess = (response: any): Promise<any> => { 
+    //         console.log(response);
+    //         return response || {};
+    //     }
         
-        return this.$http.get(this.baseUri + `/user/logout`)
-            .toPromise()
-            .then(getPackageSuccess)
-            .catch(this.errorHandler);
-    }
+    //     return this.$http.get(this.baseUri + `/user/logout`)
+    //         .toPromise()
+    //         .then(getPackageSuccess)
+    //         .catch(this.errorHandler);
+    // }
 
     registerCustomer = (firstname: string, lastname: string, email:string) => {
         const registerUserObjectSuccess = (response: any): Promise<responseObject> => {            
