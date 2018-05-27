@@ -36,6 +36,10 @@ export class LoadUserComponent implements OnInit {
 		    this.loading = false;
 		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-		this.userObj = this.userSvc.loadUser();
+
+		this.userSvc.searchUserbyID().then((result) => {
+            this.userObj = result.data;
+        });
+
 	}
 }

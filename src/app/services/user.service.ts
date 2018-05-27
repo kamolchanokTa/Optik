@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
@@ -45,7 +45,7 @@ export class UserService {
 
         //let item = localStorage != null ? localStorage[this.userName + '_items'] : null;
         let item =  this.persistenceService.get(this.userName,StorageType.SESSION) != null ? this.persistenceService.get(this.userName,StorageType.SESSION) : null;
-        debugger;
+
         if (item != null && JSON != null) {
             try {
                 item = JSON.parse(item);
@@ -76,6 +76,24 @@ export class UserService {
         this.persistenceService.set(this.userName,JSON.stringify(this.user), persistenceConfig);
     }
 
+    //search user by id
+    searchUserbyID() {
+        const searchUserObjectSuccess = (response: any): Promise<responseObject> => {     
+            debugger;
+            return response || {};
+        }
+
+        var userID = this.user.userid;
+
+        let params = new HttpParams().set("id",userID);
+        params.append("id", userID);
+        return this.$http.get(this.baseUri + `/user`, {params:params})
+            .toPromise()
+            .then(searchUserObjectSuccess)
+            .catch(this.errorHandler);
+
+    }
+
     addItem(name,userid,address,creditcard,sessionKey) {
         const _return = true;
         this.user = {
@@ -94,7 +112,7 @@ export class UserService {
         const getPackageSuccess = (response: any): Promise<responseObject> => {            
             return response || {};
         }
-        debugger;
+
 		let body = {
             email: email,
             password: password,

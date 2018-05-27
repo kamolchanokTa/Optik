@@ -9,15 +9,45 @@
                 <div class="avatar">
                     <img alt="" src="http://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png">
                 </div>
-                <div class="info">
-                    <div class="title">
+
+                <div class="title">
                         <h1>{{ userObj.name }}</h1>
-                    </div>
-                      <div>ID: <span>{{ userObj.id }}</span></div>
-                      <div>Address: <span>{{ userObj.address }}</span></div>
-                      <div ng-if="userObj.creditcardntype">Creditcard type: <span>{{ userObj.creditcardtype }}</span></div>
                 </div>
-                <div class="bottom">
+                <div class="info text-left">
+                <table style="table-layout: fixed;">
+
+                    <tr>
+                      <td class="text-right" colspan="2"><b>Email: </b></td>
+                      <td colspan="1">&nbsp;&nbsp;&nbsp;</td>
+                      <td class="text-left" colspan="2">  {{ userObj.email }}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right" colspan="2"><b>Address: </b></td>
+                      <td>&nbsp;&nbsp;&nbsp;</td>
+                      <td class="text-left" colspan="2">  {{ userObj.address }}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right" colspan="2"><b>City: </b></td>
+                      <td>&nbsp;&nbsp;&nbsp;</td>
+                      <td class="text-left" colspan="2">  {{ userObj.city }}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right" colspan="2"><b>Zipcode: </b></td>
+                      <td>&nbsp;&nbsp;&nbsp;</td>
+                      <td class="text-left" colspan="2">  {{ userObj.zipcode }}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right" colspan="2"><b>Country: </b></td>
+                      <td>&nbsp;&nbsp;&nbsp;</td>
+                      <td class="text-left" colspan="2">  {{ userObj.country }}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right" colspan="2"><b>Creditcard#: </b></td>
+                      <td>&nbsp;&nbsp;&nbsp;</td>
+                      <td class="text-left" colspan="2">  {{ userObj.creditcardnumber }}</td>
+                    </tr>
+                </table>
+                <div class="bottom text-center">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
                         <i class="fa fa-twitter"></i>
                     </a>
@@ -29,7 +59,7 @@
                        href="https://plus.google.com/shahnuralam">
                         <i class="fa fa-facebook"></i>
                     </a>
-                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                    <a class="btn btn-warning btn-sm " rel="publisher" href="https://plus.google.com/shahnuralam">
                         <i class="fa fa-behance"></i>
                     </a>
                 </div>
