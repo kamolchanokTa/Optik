@@ -40,7 +40,7 @@ export class UpdateCreditComponent implements OnInit {
             this.loading = false;
             this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-        this.userSvc.updateCreditObject(this.id, this.model.cardnumber, this.creditTypeSelected, this.model.exp)
+        this.userSvc.updateCreditObject(this.userSvc.user.userid, this.model.cardnumber, this.creditTypeSelected, this.model.exp)
             .then((result) => {
                 this.loading = false;
                 this.notifyMessages.push({ type: "confirm", message: "Successful update credit!! use "+ result.email +" as username"  });

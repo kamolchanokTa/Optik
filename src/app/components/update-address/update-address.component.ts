@@ -41,7 +41,7 @@ export class UpdateAddressComponent implements OnInit {
             this.loading = false;
             this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-        this.userSvc.updateAddressObject(this.id, this.model.address, this.model.city, this.countrySelected, this.model.zipcode)
+        this.userSvc.updateAddressObject(this.userSvc.user.userid, this.model.address, this.model.city, this.countrySelected, this.model.zipcode)
             .then((result) => {
                 this.loading = false;
                 this.notifyMessages.push({ type: "confirm", message: "Successful update address!! use "+ result.id +" as username"  });
