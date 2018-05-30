@@ -33,7 +33,8 @@ export class UserService {
         userid: null,
         address: null,
         creditcard: null,
-        sessionKey: null
+        sessionKey: null,
+        userType: null
     }
 
     constructor(private $http: HttpClient, private persistenceService: PersistenceService) {
@@ -54,7 +55,8 @@ export class UserService {
                     userid: item.userid,
                     address: item.address,
                     creditcard:item.creditcard,
-                    sessionKey: item.sessionKey
+                    sessionKey: item.sessionKey,
+                    userType: item.userType
                 }
             } catch (err) {
                 // ignore errors while loading...
@@ -94,14 +96,15 @@ export class UserService {
 
     }
 
-    addItem(name,userid,address,creditcard,sessionKey) {
+    addItem(name,userid,address,creditcard,sessionKey, userType) {
         const _return = true;
         this.user = {
             name:name,
             userid: userid,
             address:address,
             creditcard:creditcard,
-            sessionKey: sessionKey
+            sessionKey: sessionKey,
+            userType: userType
         }
         // save changes
         this.saveUser();
@@ -223,7 +226,8 @@ export class UserService {
             userid: null,
             address: null,
             creditcard: null,
-            sessionKey: null
+            sessionKey: null,
+            userType: null
         }
         this.saveUser()
         this.persistenceService.remove(this.userName,StorageType.SESSION);

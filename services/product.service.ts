@@ -72,7 +72,9 @@ class ProductService {
             "productType": req.body.productType,
             "image": req.body.image,
             "price":req.body.price,
-            "description": req.body.description
+            "description": req.body.description,
+            "userid": req.body.userid,
+            "amount": req.body.amount
         };
         const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
 

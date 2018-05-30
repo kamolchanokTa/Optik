@@ -18,7 +18,8 @@ export class TopHeaderComponent implements OnInit {
     // private fields
     loading: boolean;
     notifyMessages: INotifyMessage[];
-    isCheckoutProcessing: boolean
+    isCheckoutProcessing: boolean;
+    isAdmin: boolean;
 
     product: any={
         id:this.route.snapshot.params['id'],
@@ -30,9 +31,11 @@ export class TopHeaderComponent implements OnInit {
     }
     ngOnInit() {
         this.loading = true;
+        this.isAdmin = false;
         this.notifyMessages = [];
         console.log("product in cart: " + this.product);
         this.isCheckoutProcessing= false;
+        this.checkAuthorize();
     }
 
     constructor(private router: Router,
@@ -55,6 +58,15 @@ export class TopHeaderComponent implements OnInit {
     b64toBlob(b64Data, contentType, sliceSize) {
         if(b64Data != ''){
             return "data:"+contentType+ ";base64,"+b64Data;
+        }
+    }
+
+    checkAuthorize(){
+        if(this.userService.user.userType != 0){
+            this.isAdmin = false;
+        }
+        else{
+            this.isAdmin= true;
         }
     }
 }

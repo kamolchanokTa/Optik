@@ -153,6 +153,7 @@
 							<ul class="custom-menu">
 								<li><a href="/product-overview">Home</a></li>
 								<li><a href="/products">Products</a></li>
+								<li [hidden]= "!isAdmin"><a href="/product-create">Create Product</a></li>
 								<li><a href="/cart-detail">Checkout</a></li>
 							</ul>
 						</li>
