@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
@@ -33,7 +33,8 @@ export class UserService {
         userid: null,
         address: null,
         creditcard: null,
-        sessionKey: null
+        sessionKey: null,
+        userType: null
     }
 
     constructor(private $http: HttpClient, private persistenceService: PersistenceService) {
@@ -45,7 +46,7 @@ export class UserService {
 
         //let item = localStorage != null ? localStorage[this.userName + '_items'] : null;
         let item =  this.persistenceService.get(this.userName,StorageType.SESSION) != null ? this.persistenceService.get(this.userName,StorageType.SESSION) : null;
-        debugger;
+
         if (item != null && JSON != null) {
             try {
                 item = JSON.parse(item);
@@ -54,7 +55,8 @@ export class UserService {
                     userid: item.userid,
                     address: item.address,
                     creditcard:item.creditcard,
-                    sessionKey: item.sessionKey
+                    sessionKey: item.sessionKey,
+                    userType: item.userType
                 }
             } catch (err) {
                 // ignore errors while loading...
@@ -76,14 +78,33 @@ export class UserService {
         this.persistenceService.set(this.userName,JSON.stringify(this.user), persistenceConfig);
     }
 
-    addItem(name,userid,address,creditcard,sessionKey) {
+    //search user by id
+    searchUserbyID() {
+        const searchUserObjectSuccess = (response: any): Promise<responseObject> => {     
+            debugger;
+            return response || {};
+        }
+
+        var userID = this.user.userid;
+
+        let params = new HttpParams().set("id",userID);
+        params.append("id", userID);
+        return this.$http.get(this.baseUri + `/user`, {params:params})
+            .toPromise()
+            .then(searchUserObjectSuccess)
+            .catch(this.errorHandler);
+
+    }
+
+    addItem(name,userid,address,creditcard,sessionKey, userType) {
         const _return = true;
         this.user = {
             name:name,
             userid: userid,
             address:address,
             creditcard:creditcard,
-            sessionKey: sessionKey
+            sessionKey: sessionKey,
+            userType: userType
         }
         // save changes
         this.saveUser();
@@ -94,7 +115,7 @@ export class UserService {
         const getPackageSuccess = (response: any): Promise<responseObject> => {            
             return response || {};
         }
-        debugger;
+
 		let body = {
             email: email,
             password: password,
@@ -107,17 +128,17 @@ export class UserService {
             .catch(this.errorHandler);
     }
 
-    logout = () => {
-        const getPackageSuccess = (response: any): Promise<any> => { 
-            console.log(response);
-            return response || {};
-        }
+    // logout = () => {
+    //     const getPackageSuccess = (response: any): Promise<any> => { 
+    //         console.log(response);
+    //         return response || {};
+    //     }
         
-        return this.$http.get(this.baseUri + `/user/logout`)
-            .toPromise()
-            .then(getPackageSuccess)
-            .catch(this.errorHandler);
-    }
+    //     return this.$http.get(this.baseUri + `/user/logout`)
+    //         .toPromise()
+    //         .then(getPackageSuccess)
+    //         .catch(this.errorHandler);
+    // }
 
     registerCustomer = (firstname: string, lastname: string, email:string) => {
         const registerUserObjectSuccess = (response: any): Promise<responseObject> => {            
@@ -205,7 +226,8 @@ export class UserService {
             userid: null,
             address: null,
             creditcard: null,
-            sessionKey: null
+            sessionKey: null,
+            userType: null
         }
         this.saveUser()
         this.persistenceService.remove(this.userName,StorageType.SESSION);

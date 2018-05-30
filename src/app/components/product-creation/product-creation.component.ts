@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { NgModel } from "@angular/forms";
 
 import { ProductService, ProductObject} from "../../services/product.service";
+import { UserService} from "../../services/user.service";
 import { INotifyMessage } from "../../custom-elements/notifier/notifier.component";
 import * as _ from "lodash";
 @Component({
-    selector: "#registeration",
+    selector: "#product-create",
     templateUrl: "./product-creation.component.html",
     // styleUrls: ["./registeration.style.css"]
 })
@@ -22,20 +23,52 @@ export class ProductCreationComponent implements OnInit {
     productType: string;
     image: string;
     price: number;
-    description: string
-    imagepath: string
+    description: string;
+    imagepath: string;
+    amount: number;
+    isAutorize: boolean;
     ngOnInit() {
         this.loading = true;
         this.notifyMessages = [];
         debugger;
         this.route.snapshot.params['id'];
         console.log("id: " + this.productId);
+        this.isAutorize = false;
+        this.checkUser();
     }
 
     constructor(private router: Router,
         private productSvc: ProductService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public userService:UserService
         ){
+    }
+    checkUser(){
+        const failToGetObjects = (error: any) => {
+            this.loading = false;
+            this.isAutorize = false;
+            this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
+        };
+        if(this.userService.user.userid != null){
+            this.userService.searchUserbyID()
+            .then((result) => {
+                this.loading = false;
+                if(result.data.userType != "0"){
+                    this.notifyMessages.push({ type: "error", message: "Unautherized user"  });
+                    this.isAutorize = false;
+                }
+                else{
+                    this.loading = false;
+                    this.isAutorize = true;
+                }
+                
+            }, failToGetObjects);
+        }
+        else{
+            this.loading = false;
+            this.notifyMessages.push({ type: "error", message: "There is no user login user"  });
+            this.isAutorize = false;
+        }
     }
 
     createProduct() {
@@ -46,7 +79,9 @@ export class ProductCreationComponent implements OnInit {
             productType: this.productType,
             image: this.image,
             price: this.price,
-            description: this.description
+            description: this.description,
+            userid: this.userService.user.userid,
+            amount: this.amount
         }
         debugger;
         const failToSaveObjects = (error: any) => {
@@ -55,8 +90,12 @@ export class ProductCreationComponent implements OnInit {
         };
         this.productSvc.saveProductObject(productObject)
             .then((result) => {
-                this.loading = true;
-                this.notifyMessages.push({ type: "confirm", message: "Successful create!! product "  });
+                if(result.status =="success") {
+                    this.notifyMessages.push({ type: "confirm", message: "Successful create!! product "  });
+                } else {
+                    this.notifyMessages.push({ type: "error", message: result.message || result || "Internal server error"  });
+                }
+                
             }, failToSaveObjects);
                 
     }

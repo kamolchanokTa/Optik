@@ -13,6 +13,8 @@ export class ProductObject {
     image: string;
     price: number;
     description: string;
+    userid: string;
+    amount: number;
 }
 
 export class ProductCartObject {

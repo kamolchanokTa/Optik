@@ -65,6 +65,22 @@ class UserService {
             });
     }
 
+    getUserByID = (req: any, res: any) => {
+        const uri = this.baseEndpoint + '/user?userid='+req.query.id;
+        const requestOpt = this.http.createOption(uri, {}, req.body.sessionKey);
+
+        const updateSuccess = (data: any) => {
+            res.send(200, data);
+        };
+
+        this.http.getAsync(requestOpt)
+            .then(updateSuccess)
+            .catch((error) => {
+                this.errorHandler(error);
+                res.send(error.code || 500, error.message || "Internal server error");
+            });
+    }
+
     updateAddress = (req: any, res: any) => {
         const uri = this.baseEndpoint + '/user/update/address';
         const body = {

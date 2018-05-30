@@ -46,12 +46,12 @@ export class LoginComponent implements OnInit {
                 debugger;
                 if(result.data){
                     this.loading = false;
-                    this.userSvc.addItem(result.data.user.name,result.data.user.id,result.data.user.address,result.data.user.creditcardtype, result.data.sessionKey);
+                    this.userSvc.addItem(result.data.user.name,result.data.user.id,result.data.user.address,result.data.user.creditcardtype, result.data.usersessionKey, result.data.user.userType);
                     this.notifyMessages.push({ type: "confirm", message: "Successful login!! use "+ result.data.user.email +" as username"  });
                 }
                 else {
                     this.loading = false;
-		            this.notifyMessages.push({ type: "error", message: result.message || result || "Internal server error"  });
+		            this.notifyMessages.push({ type: "error", message: result.data.message || result.data.user|| "Internal server error"  });
                 } 
 
             }, failToLoginObjects);

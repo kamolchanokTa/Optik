@@ -50,7 +50,7 @@ export class UpdateAddressComponent implements OnInit {
                 if(result.data){
                     var userObject = result.data;
                     debugger;
-                    this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype, null);
+                    this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype, null, userObject.userType);
                 }
             }, failToUpdateObjects);
                 

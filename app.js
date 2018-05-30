@@ -31,6 +31,10 @@ app.post('/api/user/create', function (req, res) {
     userServ.default.createUser(req, res);
 });
 
+app.get('/api/user',function(req, res){
+    userServ.default.getUserByID(req, res);
+});
+
 app.post('/api/user/update-address', function (req, res) {
     console.log("update address");
     console.log(req.body.id);

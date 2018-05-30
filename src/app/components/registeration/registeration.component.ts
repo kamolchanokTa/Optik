@@ -63,7 +63,7 @@ export class RegisterationComponent implements OnInit {
         };
         this.userSvc.signupUserObject(userObject)
             .then((result) => {
-                this.loading = true;
+                this.loading = false;
                 this.notifyMessages.push({ type: "confirm", message: "Successful register!! use "+ result.email +" as username"  });
             }, failToSaveObjects);
                 
