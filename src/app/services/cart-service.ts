@@ -45,7 +45,6 @@ export class CartService {
     loadItems() {
 
         let items =  this.persistenceService.get(this.cartName,StorageType.SESSION) != null ? this.persistenceService.get(this.cartName,StorageType.SESSION) : null;
-        debugger;
         if (items != null && JSON != null) {
             try {
                 items = JSON.parse(items);
@@ -80,7 +79,6 @@ export class CartService {
     addItem(productid, unitprice,quantity, shippingCost,productName,productDescription, productAmount,productImage,productType) {
         const _return = true;
         let found = false;
-        debugger;
         for (let i = 0; i < this.items.length && !found; i++) {
             const item = this.items[i];
             if (item.productid === productid) {
@@ -230,7 +228,6 @@ export class CartService {
     private errorHandler = (error: any): Promise<any> =>{
         let errMsg: string;
         errMsg = error.message ? error.message : error.text();
-        console.log('seee');
 
         return Promise.reject(errMsg);
     }

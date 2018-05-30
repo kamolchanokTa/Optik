@@ -43,7 +43,6 @@ class UserService {
     }
 
     createUser = (req: any, res: any) => {
-        console.log(req.body.email);
         const uri = this.baseEndpoint + '/user/create';
         const body = {
             "email": req.body.email,

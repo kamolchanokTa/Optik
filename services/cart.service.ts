@@ -14,7 +14,6 @@ class ProductService {
     }
 
     getCartsByCustomer =  (req: any, res: any) => {
-        console.log(req.body);
         const uri = this.baseEndpoint + '/orders/get/user?userid='+req.body.userid;
         const body = { };
         const requestOpt = this.http.createOption(uri, body,req.body.sessionKey);
@@ -31,7 +30,6 @@ class ProductService {
     }
 
     getProduct =  (req: any, res: any) => {
-        console.log(req.body);
         const uri = this.baseEndpoint + '/product?id='+req.body.id;
         
         // const body = { };
@@ -50,7 +48,6 @@ class ProductService {
 
     saveCart = (req: any, res: any) => {
         const uri = this.baseEndpoint + '/order/create';
-        console.log(req.body);
         const body = {
             "userid": req.body.userid,
             "totalprice": req.body.totalprice,

@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
         }
         this.userSvc.login(this.model.email, md5(this.model.password), sessionKey)
             .then((result) => {
-                debugger;
                 if(result.data){
                     this.loading = false;
                     this.userSvc.addItem(result.data.user.name,result.data.user.id,result.data.user.address,result.data.user.creditcardtype, result.data.usersessionKey, result.data.user.userType);

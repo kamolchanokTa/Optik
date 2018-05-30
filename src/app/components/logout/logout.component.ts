@@ -33,7 +33,6 @@ export class LogoutComponent implements OnInit {
 
 		const failToLogoutObjects = (error: any) => {
 		    this.loading = false;
-		    console.log("logout failure...");
 		    this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
 

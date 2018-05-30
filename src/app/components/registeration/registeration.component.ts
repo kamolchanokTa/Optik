@@ -34,7 +34,6 @@ export class RegisterationComponent implements OnInit {
     ngOnInit() {
         this.loading = false;
         this.notifyMessages = [];
-        debugger;
         this.countryList = countries;
     }
 

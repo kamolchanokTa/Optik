@@ -30,9 +30,7 @@ export class ProductCreationComponent implements OnInit {
     ngOnInit() {
         this.loading = true;
         this.notifyMessages = [];
-        debugger;
         this.route.snapshot.params['id'];
-        console.log("id: " + this.productId);
         this.isAutorize = false;
         this.checkUser();
     }
@@ -83,7 +81,6 @@ export class ProductCreationComponent implements OnInit {
             userid: this.userService.user.userid,
             amount: this.amount
         }
-        debugger;
         const failToSaveObjects = (error: any) => {
             this.loading = false;
             this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });

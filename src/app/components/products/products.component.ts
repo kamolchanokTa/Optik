@@ -36,7 +36,6 @@ export class ProductsViewComponent implements OnInit {
         const failToGetValueObjects = (error: any) => {
             this.loading = false;
         };
-        debugger;
         this.productSvc.getProducts()
             .then((result) => {
                 this.loading = false;

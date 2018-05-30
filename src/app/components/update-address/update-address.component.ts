@@ -20,7 +20,7 @@ export class UpdateAddressComponent implements OnInit {
     notifyMessages: INotifyMessage[];
     countryList: any;
     countrySelected: string;
-    id: string = this.route.snapshot.params['id'];
+    id: string ;
     
     ngOnInit() {
         this.notifyMessages = [];
@@ -41,15 +41,12 @@ export class UpdateAddressComponent implements OnInit {
             this.loading = false;
             this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-        debugger;
         this.userSvc.updateAddressObject(this.id, this.model.address, this.model.city, this.countrySelected, this.model.zipcode)
             .then((result) => {
                 this.loading = false;
-                debugger;
                 this.notifyMessages.push({ type: "confirm", message: "Successful update address!! use "+ result.id +" as username"  });
                 if(result.data){
                     var userObject = result.data;
-                    debugger;
                     this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype, null, userObject.userType);
                 }
             }, failToUpdateObjects);

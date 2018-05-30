@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
                 this.notifyMessages.push({ type: "confirm", message: "Successful register a customer!! use "+ result.email +" as username"  });
                 if(result.data){
                     var userObject = result.data;
-                    console.log("moving to updateCustomerAddress");
                     this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype, null, userObject.userType);
                 }
             }, failToRegisterObjects);

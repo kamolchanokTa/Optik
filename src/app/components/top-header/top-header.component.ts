@@ -33,7 +33,6 @@ export class TopHeaderComponent implements OnInit {
         this.loading = true;
         this.isAdmin = false;
         this.notifyMessages = [];
-        console.log("product in cart: " + this.product);
         this.isCheckoutProcessing= false;
         this.checkAuthorize();
     }

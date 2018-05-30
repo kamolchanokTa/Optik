@@ -36,13 +36,10 @@ app.get('/api/user',function(req, res){
 });
 
 app.post('/api/user/update-address', function (req, res) {
-    console.log("update address");
-    console.log(req.body.id);
     userServ.default.updateAddress(req, res);
 });
 
 app.post('/api/user/update-credit', function (req, res) {
-    console.log(req.body.id);
     userServ.default.updateCredit(req, res);
 });
 // the GET "movies" API endpoint

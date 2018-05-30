@@ -35,7 +35,6 @@ export class ProductOverviewComponent implements OnInit {
         const failToGetValueObjects = (error: any) => {
             this.loading = false;
         };
-        debugger;
         this.productSvc.getProducts()
             .then((result) => {
                 this.loading = false;
@@ -46,7 +45,6 @@ export class ProductOverviewComponent implements OnInit {
                         return item;
                     }
                 });
-                console.log(result);
             }, failToGetValueObjects);
                 // the first argument is a function which runs on success
                 

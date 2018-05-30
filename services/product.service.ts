@@ -47,7 +47,6 @@ class ProductService {
     }
 
     getProduct =  (req: any, res: any) => {
-        console.log(req.body);
         const uri = this.baseEndpoint + '/product?id='+req.body.id;
         
         // const body = { };
@@ -66,7 +65,6 @@ class ProductService {
 
     saveProduct = (req: any, res: any) => {
         const uri = this.baseEndpoint + '/product/create';
-        console.log(req.body);
         const body = {
             "name": req.body.name,
             "productType": req.body.productType,

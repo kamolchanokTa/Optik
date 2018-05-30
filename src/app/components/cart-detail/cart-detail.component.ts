@@ -35,7 +35,6 @@ export class CartDetailComponent implements OnInit {
         this.loading = true;
         this.notifyMessages = [];
         this.isOpenLogin= false;
-        console.log("product in cart: " + this.product);
         this.isCheckoutProcessing= false;
         this.shipment = [];
         this.billingStep= 0;
@@ -115,8 +114,6 @@ export class CartDetailComponent implements OnInit {
             orderdetails.push(orderdetail);
         });
         let totalpri = this.cartService.getTotalPrice(null);
-        console.log(Date.now.toString());
-        debugger;
         let cart = {
             "userid": this.userService.user.userid,// this.userService.getUserLocal(),
             "totalprice": this.cartService.getTotalPrice(null),

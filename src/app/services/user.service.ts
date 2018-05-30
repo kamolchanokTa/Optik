@@ -81,7 +81,6 @@ export class UserService {
     //search user by id
     searchUserbyID() {
         const searchUserObjectSuccess = (response: any): Promise<responseObject> => {     
-            debugger;
             return response || {};
         }
 
@@ -127,18 +126,6 @@ export class UserService {
             .then(getPackageSuccess)
             .catch(this.errorHandler);
     }
-
-    // logout = () => {
-    //     const getPackageSuccess = (response: any): Promise<any> => { 
-    //         console.log(response);
-    //         return response || {};
-    //     }
-        
-    //     return this.$http.get(this.baseUri + `/user/logout`)
-    //         .toPromise()
-    //         .then(getPackageSuccess)
-    //         .catch(this.errorHandler);
-    // }
 
     registerCustomer = (firstname: string, lastname: string, email:string) => {
         const registerUserObjectSuccess = (response: any): Promise<responseObject> => {            
@@ -236,8 +223,6 @@ export class UserService {
     private errorHandler = (error: any): Promise<any> =>{
         let errMsg: string;
         errMsg = error.message ? error.message : error.text();
-        console.log('seee');
-        console.log(errMsg);
         return Promise.reject(errMsg);
     }
 }

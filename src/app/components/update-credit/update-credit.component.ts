@@ -19,7 +19,7 @@ export class UpdateCreditComponent implements OnInit {
     loading: boolean;
     notifyMessages: INotifyMessage[];
     creditTypeSelected: string;
-    id: string = this.route.snapshot.params['id'];
+    id: string ;
     
     ngOnInit() {
 

@@ -45,11 +45,9 @@ export class OrderHistoryComponent implements OnInit {
 
     getOrdersByCustomeId(userid: string){
         const failToLoadObjects = (error: any) => {
-            debugger;
             this.loading = false;
             this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
         };
-        debugger;
         let user = {
             "userid": userid,
             "sessionKey": this.userService.user.sessionKey
@@ -57,7 +55,6 @@ export class OrderHistoryComponent implements OnInit {
         this.cartService.getOrdersByCustomeId(user).then((result) => {
             this.loading = false;
             this.carts = result;
-            debugger;
             console.log(this.carts);
         }, failToLoadObjects);
     }

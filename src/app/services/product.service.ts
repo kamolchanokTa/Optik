@@ -71,8 +71,6 @@ export class ProductService {
         const getPackageSuccess = (response: any): Promise<any> => {            
             return response || {};
         }
-        console.log("product Id: "+ productId);
-        debugger;
         return this.$http.post(this.baseUri + `/product/get`,productId)
             .toPromise()
             .then(getPackageSuccess)
@@ -83,7 +81,6 @@ export class ProductService {
     private errorHandler = (error: any): Promise<any> =>{
         let errMsg: string;
         errMsg = error.message ? error.message : error.text();
-        console.log('seee');
 
         return Promise.reject(errMsg);
     }

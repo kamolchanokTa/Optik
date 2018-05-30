@@ -33,7 +33,6 @@ export class ProductDetailComponent implements OnInit {
         this.loading = true;
         this.notifyMessages = [];
         this.route.snapshot.params['id'];
-        console.log("id: " + this.productId);
         this.getProduct();
     }
 
@@ -47,7 +46,6 @@ export class ProductDetailComponent implements OnInit {
 
     getProduct() {
         this.loading = true;
-        debugger;
         const failToSaveObjects = (error: any) => {
             this.loading = false;
             this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
