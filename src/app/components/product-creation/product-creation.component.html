@@ -10,48 +10,53 @@
                 </div>
                 <notifier [messages]="notifyMessages"></notifier>
                 <div [hidden]= "!isAutorize">
-                    <div>
-                        <div>
-                            <div class="block-left">Product Name:</div>
-                            <div class="block-right">
-                                <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="name" maxlength="50" />
-                            </div>
+                <form novalidate [formGroup]="myform" (ngSubmit)="myform.valid">
+                        <fieldset formGroupName="name">
+                        <div class="form-group"
+                            [ngClass]="{'has-error': productname.invalid && (productname.dirty || productname.touched),'has-success': productname.valid && (productname.dirty || productname.touched)}">
+                            <label>Product Name</label>
+                            <input type="text" class="form-control" formControlName="productname" required>
+                            <p *ngIf="productname.invalid  && (productname.dirty || productname.touched)" class="has-error">Product Type is required</p>
                         </div>
-                        <div>
-                            <div class="block-left">Description:</div>
-                            <div class="block-right">
-                                <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="description" />
-                            </div>
+                        <div class="form-group"
+                            [ngClass]="{'has-error': productType.invalid && (productType.dirty || productType.touched),'has-success': productType.valid && (productType.dirty || productType.touched)}">
+                            <label>Product Type</label>
+                            <input type="text" class="form-control" formControlName="productType" required>
+                            <p *ngIf="productType.invalid && (productType.dirty || productType.touched)">Product Type is required</p>
                         </div>
-                        <div>
-                            <div class="block-left">Product Type:</div>
-                            <div class="block-right">
-                                <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="productType" maxlength="50" />
-                            </div>
+                        <div class="form-group"
+                            [ngClass]="{'has-error': description.invalid && (description.dirty || description.touched),'has-success': description.valid && (description.dirty || description.touched)}">
+                            <label>Description</label>
+                            <input type="text" class="form-control" formControlName="description" required>
+                            <p *ngIf="description.invalid && (description.dirty || description.touched)">Description is required</p>
                         </div>
+                        </fieldset>
+                        <fieldset formGroupName="number">
+                            <div class="form-group"
+                                [ngClass]="{'has-error': price.invalid && (price.dirty || price.touched),'has-success': price.valid && (price.dirty || price.touched)}">
+                                <label>Price</label>
+                                <input type="text" class="form-control" formControlName="price" required>
+                                <p *ngIf="price.invalid && (price.dirty || price.touched)">Price is required</p>
+                            </div>
+                            <div class="form-group"
+                                [ngClass]="{'has-error': amount.invalid && (amount.dirty || amount.touched),'has-success': amount.valid && (amount.dirty || amount.touched)}">
+                                <label>Amount</label>
+                                <input type="text" class="form-control" formControlName="amount" required>
+                                <p *ngIf="amount.invalid && (amount.dirty || amount.touched)">Amount is required</p>
+                            </div>
+                        </fieldset>
                         <div>
-                            <div class="block-left">Image:</div>
+                            <label>Image</label>
                             <div class="block-right">
                                 <input type="file"  class="input-width" [(ngModel)]="imagepath"  (change)="handleFileSelect($event)"/>
                             </div>
                         </div>
-                        <div>
-                            <div class="block-left">Price:</div>
-                            <div class="block-right">
-                                <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="price" maxlength="50" />
-                            </div>
-                        </div>
-                        <div>
-                            <div class="block-left">Amount:</div>
-                            <div class="block-right">
-                                <input type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="amount" maxlength="50" />
-                            </div>
-                        </div>
-                        <div class="align-right">
-                        <button class="primary-btn" (click)="createProduct()">Save</button>
-                        <button routerLink="/registeration" class="main-btn">Cancel</button>
-                    </div>
+                        <button type="submit" class="primary-btn" (click)="createProduct()">Save</button>
+                        <button routerLink="/product-create" class="main-btn">Cancel</button>
+                
+                </form>
                 </div>
+                
             </div>
         </div>
     </div>

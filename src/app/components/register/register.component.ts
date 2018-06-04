@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
     loading = false;
     returnUrl: string;
     notifyMessages: INotifyMessage[];
+    isValid: boolean;
     
     constructor(
         private router: Router,
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this.loading = false;
         this.notifyMessages = [];
+        this.isValid = false;
         // reset register status
         // don't know how
  
@@ -34,21 +36,32 @@ export class RegisterComponent implements OnInit {
         // kill me?
     }
 
-    registerObject(){
-        this.loading = true;
-        const failToRegisterObjects = (error: any) => {
-        this.loading = false;
-        this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
-        };
-        
-        this.userSvc.registerCustomer(this.model.firstname, this.model.lastname, this.model.email)
-            .then((result) => {
-                this.loading = false;
-                this.notifyMessages.push({ type: "confirm", message: "Successful register a customer!! use "+ result.email +" as username"  });
-                if(result.data){
-                    var userObject = result.data;
-                    this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype, null, userObject.userType);
-                }
-            }, failToRegisterObjects);
+    onSubmit(f: any) {
+        console.log(f.value);  // { first: '', last: '' }
+        console.log(f.valid);  // false
+    }
+
+    registerObject(isValid: any){
+        if(isValid.valid) {
+            this.loading = true;
+            const failToRegisterObjects = (error: any) => {
+            this.loading = false;
+
+            this.notifyMessages.push({ type: "error", message: error.message || error || "Internal server error"  });
+            };
+            
+            this.userSvc.registerCustomer(this.model.firstname, this.model.lastname, this.model.email)
+                .then((result) => {
+                    this.loading = false;
+                    if(result.data.status="success"){
+                        var userObject = result.data;
+                        this.notifyMessages.push({ type: "confirm", message: "Successful register a customer!! use "+ result.email +" as username"  });
+                        this.userSvc.addItem(userObject.name,userObject.id,userObject.address,userObject.creditcardtype, null, userObject.userType);
+                    }
+                }, failToRegisterObjects);
+        }
+        else {
+            this.notifyMessages.push({ type: "error", message: "invalid"  });
+        }
     }
 }

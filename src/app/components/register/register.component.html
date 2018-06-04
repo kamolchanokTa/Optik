@@ -6,21 +6,38 @@
             <div class='my-2'>
                 <h3 class='text-center'>Customer Information</h3>
                 <hr/>
-                <div>
-                    <label class="block-left col-3 col-sm-5 ">First Name:</label>
-                    <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.firstname" maxlength="50" required/>
-                </div>
-                <div>
-                    <label class="block-left col-3 col-sm-5">Last Name:</label>
+                <form  name="form" (onSubmit)="f.form.valid" #f="ngForm" novalidate> 
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+                        <input type="text" class="form-control" placeholder="First Name" name="firstname" [(ngModel)]="model.firstname" #firstname="ngModel" maxlength="50"  required />
+                        <div *ngIf="f.submitted && !firstname.valid" class="help-block">First name is required</div>
+                    </div>
+                    <!-- <div>
+                        <label class="block-left col-3 col-sm-5 ">First Name:</label>
+                        <input class="block-right col-6" type="text" placeholder="maximum 50 characters" name="firstname" class="input-width" [(ngModel)]="model.firstname" maxlength="50" required/>
+                        <p *ngIf="model.firstname.valid" class="has-error">First name is required</p>
+                    </div> -->
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lastname" [(ngModel)]="model.lastname" #lastname="ngModel" maxlength="50" required />
+                        <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last name is required</div>
+                    </div>
+                    <!-- <div>
+                        <label class="block-left col-3 col-sm-5">Last Name:</label>
                         <input class="block-right col-6" type="text" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.lastname" maxlength="50" required/>
-                </div>
-                <div>
-                    <label class="block-left col-3 col-sm-5">email:</label>
+                        <p *ngIf="model.lastname <= 0" class="has-error">Last name is required</p>
+                    </div> -->
+                    <!-- <div>
+                        <label class="block-left col-3 col-sm-5">email:</label>
                         <input class="block-right col-6" type="email" placeholder="maximum 50 characters" class="input-width" [(ngModel)]="model.email" maxlength="50" required/>
-                </div>
-                </div>
-                <div class="float-right mr-4">
-                    <button class="primary-btn" (click)="registerObject()">Next</button>
-                    <button class='main-btn' routerLink="/registeration">Cancel</button>
-                </div>
+                    </div> -->
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                            <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email: 123@gmail.com" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+                            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is invalid</div>
+                        </div>
+                    <div class="float-right mr-4">
+                        <button class="primary-btn" type="submit" (click)="registerObject(f.form)">Next</button>
+                        <button class='main-btn' routerLink="/registeration">Cancel</button>
+                    </div>
+                </form>
+
+            </div>
     </div>

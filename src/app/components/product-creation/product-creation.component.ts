@@ -1,6 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgModule } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { NgModel } from "@angular/forms";
+import { ReactiveFormsModule,
+    FormsModule,
+    FormGroup,
+    FormControl,
+    Validators,
+    FormBuilder } from "@angular/forms";
 
 import { ProductService, ProductObject} from "../../services/product.service";
 import { UserService} from "../../services/user.service";
@@ -17,21 +22,24 @@ export class ProductCreationComponent implements OnInit {
     loading: boolean;
     notifyMessages: INotifyMessage[];
     productId: string = this.route.snapshot.params['id'];
+    myform: FormGroup;
 
     //product parameters 
-    name: string;
-    productType: string;
+    productname: FormControl;
+    productType: FormControl;
     image: string;
-    price: number;
-    description: string;
+    price: FormControl;
+    description: FormControl;
     imagepath: string;
-    amount: number;
+    amount: FormControl;
     isAutorize: boolean;
     ngOnInit() {
         this.loading = true;
         this.notifyMessages = [];
         this.route.snapshot.params['id'];
         this.isAutorize = false;
+        this.createFormControls();
+        this.createForm();
         this.checkUser();
     }
 
@@ -41,6 +49,28 @@ export class ProductCreationComponent implements OnInit {
         public userService:UserService
         ){
     }
+
+    createFormControls() { 
+        this.productname = new FormControl('', Validators.required);
+        this.productType = new FormControl('', Validators.required);
+        this.description = new FormControl('', Validators.required)
+        this.price = new FormControl(0, Validators.required);
+        this.amount =new FormControl(0, Validators.required);
+      }
+
+      createForm() { 
+        this.myform = new FormGroup({
+          name: new FormGroup({
+            productname: this.productname,
+            productType: this.productType,
+            description: this.description
+          },  { updateOn: 'blur' } ),
+          number: new FormGroup({
+            price: this.price,
+            amount: this.amount
+          },  { updateOn: 'blur' } ),
+        });
+      }
     checkUser(){
         const failToGetObjects = (error: any) => {
             this.loading = false;
@@ -73,13 +103,13 @@ export class ProductCreationComponent implements OnInit {
         this.loading = true;
         // this.handleFileSelect(this.imagepath);
         let productObject: ProductObject = {
-            name: this.name,
-            productType: this.productType,
+            name: this.productname.value,
+            productType: this.productType.value,
             image: this.image,
-            price: this.price,
-            description: this.description,
+            price: this.price.value,
+            description: this.description.value,
             userid: this.userService.user.userid,
-            amount: this.amount
+            amount: this.amount.value
         }
         const failToSaveObjects = (error: any) => {
             this.loading = false;
@@ -87,6 +117,7 @@ export class ProductCreationComponent implements OnInit {
         };
         this.productSvc.saveProductObject(productObject)
             .then((result) => {
+                this.loading = false;
                 if(result.status =="success") {
                     this.notifyMessages.push({ type: "confirm", message: "Successful create!! product "  });
                 } else {
