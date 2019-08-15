@@ -2,9 +2,9 @@
 
 This project is the front-end of optical shop e-commerce website which is developed for AIT course
 
-## Technologies
- - Angular 5
- - NodeJS + ExpressJS 
+ 
+ ## Overview Technologies
+ ![alt text](https://github.com/kamolchanokTa/Optik/blob/master/OptikOverviewTechnologies.png)
 
 ## Prerequisite
 - NodeJS version 8.11.1
@@ -27,3 +27,4 @@ This project is the front-end of optical shop e-commerce website which is develo
 5. cd to your file location
 6. run `node app.js` : to run node server port 3000
 7. open chrome with url: http://localhost:5000/
+
